@@ -6,23 +6,44 @@ import dotted from "../images/dotted.png";
 
 const BannerSection = styled.section`
   width: 100%;
-  background-color: #3b5d50;
+  background-color: var(--bg-green);
   height: 583px;
 `;
 
 const BannerContainer = styled.div`
-  background-color: #3b5d50;
   width: 1240px;
   margin: 0 auto;
   display: flex;
 `;
 
+const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Title = styled.h1`
-  color: #fff;
+  color: var(--white);
   font-size: 54px;
-  font-weight: 600;
+  font-weight: var(--semi-bold);
   width: 419px;
   margin-top: 129px;
+`;
+
+const ShopButton = styled(Link)`
+  margin-top: 117px;
+  text-decoration: none;
+  width: 150px;
+  height: 50px;
+  border-radius: 30px;
+  background-color: var(--orange);
+`;
+
+const ButtonText = styled.p`
+  color: var(--dark);
+  font-weight: var(--medium);
+  line-height: var(--lh-lg);
+  margin-left: 36px;
+  margin-top: 11px;
 `;
 
 const Couch1Img = styled.img`
@@ -40,36 +61,16 @@ const DottedImg = styled.img`
   z-index: 0;
 `;
 
-const ButtonStyled = styled.p`
-  color: #2f2f2f;
-  font-weight: 500;
-  line-height: 28px;
-  width: 79px;
-  margin-left: 36px;
-  margin-top: 11px;
-`;
-
 function Banner() {
   return (
     <BannerSection>
       <BannerContainer>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <Title className="banner-title">Modern Interior Design Studio</Title>
-          <Link
-            style={{
-              marginTop: "117px",
-              textDecoration: "none",
-              width: "150px",
-              height: "50px",
-              borderRadius: "30px",
-              backgroundColor: "#f9bf29",
-            }}
-            to="/shop"
-            className="banner-button"
-          >
-            <ButtonStyled>Shop Now</ButtonStyled>
-          </Link>
-        </div>
+        <InfoContainer>
+          <Title>Modern Interior Design Studio</Title>
+          <ShopButton to="/shop">
+            <ButtonText>Shop Now</ButtonText>
+          </ShopButton>
+        </InfoContainer>
         <Couch1Img src={couch1} alt="Couch"></Couch1Img>
         <DottedImg src={dotted}></DottedImg>
       </BannerContainer>

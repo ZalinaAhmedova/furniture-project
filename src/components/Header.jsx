@@ -5,15 +5,21 @@ import cart from "../images/cart.png";
 
 const HeaderStyled = styled.header`
   width: 100%;
-  background-color: #3b5d50;
+  background-color: var(--bg-green);
   height: 91px;
 `;
 
 const HeaderContainer = styled.div`
   margin: 0 auto;
-  background-color: #3b5d50;
   width: 1240px;
   display: flex;
+`;
+
+const LogoStyled = styled(Link)`
+  color: var(--white);
+  text-decoration: none;
+  font-size: 32px;
+  margin-top: 49px;
 `;
 
 const Nav = styled.ul`
@@ -24,59 +30,37 @@ const Nav = styled.ul`
   justify-content: space-between;
 `;
 
+const NavItem = styled(Link)`
+  color: var(--white);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--orange);
+    text-decoration-thickness: 5px;
+    text-underline-offset: 8px;
+  }
+`;
+
+const CartStyled = styled(Link)`
+  color: var(--white);
+  text-decoration: none;
+  margin-top: 13px;
+  margin-left: 438px;
+`;
+
 function Header() {
   return (
     <HeaderStyled>
       <HeaderContainer>
-        <Link
-          style={{
-            color: "#fff",
-            textDecoration: "none",
-            fontWeight: "400",
-            fontSize: "32px",
-            marginTop: "49px",
-          }}
-          to="/"
-          className="header-logo logo"
-        >
-          Furni.
-        </Link>
+        <LogoStyled to="/">Furni.</LogoStyled>
         <Nav>
-          <Link
-            style={{
-              color: "#fff",
-              textDecoration: "none",
-              fontWeight: "400",
-            }}
-            to="/"
-            className="nav-item"
-          >
-            Home
-          </Link>
-          <Link
-            style={{
-              color: "#fff",
-              textDecoration: "none",
-              fontWeight: "400",
-            }}
-            to="/shop"
-            className="nav-item"
-          >
-            Shop
-          </Link>
+          <NavItem to="/">Home</NavItem>
+          <NavItem to="/shop">Shop</NavItem>
         </Nav>
-        <Link
-          style={{
-            color: "#fff",
-            textDecoration: "none",
-            marginTop: "13px",
-            marginLeft: "438px",
-          }}
-          to="/shoppingcart"
-          className="shoppingcart-button"
-        >
+        <CartStyled to="/shoppingcart">
           <img src={cart} alt="Shopping Cart"></img>
-        </Link>
+        </CartStyled>
       </HeaderContainer>
     </HeaderStyled>
   );

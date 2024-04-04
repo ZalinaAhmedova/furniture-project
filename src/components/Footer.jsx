@@ -16,13 +16,56 @@ const SubscriptionArea = styled.div`
   margin: 0 auto;
 `;
 
+const Form = styled.form`
+  margin-top: 94px;
+`;
+
+const Label = styled.label`
+  display: flex;
+`;
+
+const EmailIcon = styled.img`
+  height: 25px;
+  width: 22px;
+`;
+
+const LabelText = styled.p`
+  font-size: 18px;
+  font-weight: var(--medium);
+  margin-left: 12px;
+  margin-top: 3px;
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  margin-top: 22px;
+`;
+
 const InputStyled = styled.input`
   width: 262px;
   height: 45px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: var(--fs-sm);
   padding-left: 22px;
   margin-right: 15px;
+`;
+
+const SendEmailLink = styled.a`
+  width: 50px;
+  height: 48px;
+  text-decoration: none;
+`;
+
+const PaperPlaneImg = styled.img`
+  position: relative;
+  bottom: 43px;
+  left: 9px;
+`;
+
+const SofaImg = styled.img`
+  position: relative;
+  left: 104px;
+  bottom: 85px;
 `;
 
 const FooterStyled = styled.div`
@@ -32,142 +75,155 @@ const FooterStyled = styled.div`
   flex-direction: column;
 `;
 
-const FooterList = styled.ul`
-  text-decoration: none;
-  line-height: 28px;
-  font-size: 14px;
+const FooterTitle = styled.h2`
+  font-size: 32px;
+  font-weight: var(--semi-bold);
+  margin-bottom: 19px;
+`;
 
-  &li {
-    list-style-type: none;
-  }
+const FooterInfo = styled.div`
+  display: flex;
+  margin-bottom: 43px;
+`;
+
+const FooterInfoText = styled.p`
+  font-size: var(--fs-sm);
+  line-height: var(--lh-md);
+  width: 360px;
+  margin-right: 65px;
+`;
+
+const FooterNav = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 583px;
+`;
+
+const FooterList = styled.ul``;
+
+const FooterListItem = styled.li`
+  text-decoration: none;
+  line-height: var(--lh-lg);
+  font-size: var(--fs-sm);
+  list-style-type: none;
+`;
+
+const FooterSocialMedia = styled.div`
+  margin-bottom: 68px;
+`;
+
+const FooterCopyright = styled.div`
+  margin-bottom: 93px;
+  display: flex;
+`;
+
+const SocialIcon = styled.img`
+  position: relative;
+  width: 17px;
+  height: 17px;
+  right: 28px;
+  bottom: 12px;
+`;
+
+const Copyright = styled.p`
+  margin-right: 512px;
+  font-size: 13px;
+  line-height: var(--lh-md);
+`;
+
+const TermsAndConditions = styled.a`
+  margin-right: 42px;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-md);
+`;
+
+const PrivacyPolicy = styled.a`
+  font-size: var(--fs-sm);
+  line-height: var(--lh-md);
 `;
 
 function Footer() {
   return (
     <footer>
       <SubscriptionArea>
-        <form
-          style={{
-            marginTop: "94px",
-          }}
-          action=""
-          className="subscribe-form"
-        >
-          <label style={{ display: "flex" }}>
-            <img
-              style={{ height: "25px", width: "22px" }}
-              src={emailIcon}
-              alt="E-mail icon"
-            ></img>
-            <p
-              style={{
-                fontSize: "18px",
-                fontWeight: "500",
-                marginLeft: "12px",
-                marginTop: "3px",
-              }}
-            >
-              Subscribe to Newsletter
-            </p>
-          </label>
-          <div style={{ display: "flex", marginTop: "22px" }}>
+        <Form action="">
+          <Label>
+            <EmailIcon src={emailIcon} alt="E-mail icon"></EmailIcon>
+            <LabelText>Subscribe to Newsletter</LabelText>
+          </Label>
+          <InputContainer>
             <InputStyled type="text" placeholder="Enter your name" />
             <InputStyled type="email" placeholder="Enter your e-mail" />
-            <a
-              style={{ width: "50px", heigth: "48px", textDecoration: "none" }}
-              href="#"
-            >
+            <SendEmailLink href="#">
               <img src={sendRectangle} alt="Send e-mail icon"></img>
-              <img
-                style={{ position: "relative", bottom: "43px", left: "9px" }}
+              <PaperPlaneImg
                 src={paperPlane}
                 alt="Send e-mail icon"
-              ></img>
-            </a>
-          </div>
-        </form>
-        <img
-          style={{ position: "relative", left: "104px", bottom: "85px" }}
-          src={sofa1}
-          alt="Sofa1"
-        ></img>
+              ></PaperPlaneImg>
+            </SendEmailLink>
+          </InputContainer>
+        </Form>
+        <SofaImg src={sofa1} alt="Sofa1"></SofaImg>
       </SubscriptionArea>
       <FooterStyled>
-        <h2
-          style={{ fontSize: "32px", fontWeight: "600", marginBottom: "19px" }}
-          className="footer-title"
-        >
-          Furni.
-        </h2>
-        <div style={{ display: "flex" }} className="footer-info">
-          <p
-            style={{
-              fontSize: "14px",
-              lineHeight: "24px",
-              width: "360px",
-              marginRight: "65px",
-            }}
-          >
+        <FooterTitle>Furni.</FooterTitle>
+        <FooterInfo>
+          <FooterInfoText>
             Donec mattis porta eros, aliquet finibus risus interdum at. Nulla
             vivethe as it was for us to know what was to be done. the this is a
             long post for the text.`This small text has to be place here, since
             this is
-          </p>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "583px",
-            }}
-            className="footer-nav"
-          >
+          </FooterInfoText>
+          <FooterNav>
             <FooterList>
-              <Footer className="footer-nav-list-item">About us</Footer>
-              <li className="footer-nav-list-item">Services</li>
-              <li className="footer-nav-list-item">Blog</li>
-              <li className="footer-nav-list-item">Contact us</li>
+              <FooterListItem>About us</FooterListItem>
+              <FooterListItem>Services</FooterListItem>
+              <FooterListItem>Blog</FooterListItem>
+              <FooterListItem>Contact us</FooterListItem>
             </FooterList>
             <FooterList>
-              <li className="footer-nav-list-item">Support</li>
-              <li className="footer-nav-list-item">Knowledge base</li>
-              <li className="footer-nav-list-item">Live chat</li>
+              <FooterListItem>Support</FooterListItem>
+              <FooterListItem>Knowledge base</FooterListItem>
+              <FooterListItem>Live chat</FooterListItem>
             </FooterList>
             <FooterList>
-              <li className="footer-nav-list-item">Jobs</li>
-              <li className="footer-nav-list-item">Our team</li>
-              <li className="footer-nav-list-item">Leadership</li>
-              <li className="footer-nav-list-item">Privacy Policy</li>
+              <FooterListItem>Jobs</FooterListItem>
+              <FooterListItem>Our team</FooterListItem>
+              <FooterListItem>Leadership</FooterListItem>
+              <FooterListItem>Privacy Policy</FooterListItem>
             </FooterList>
             <FooterList>
-              <li className="footer-nav-list-item">Nordic Chair</li>
-              <li className="footer-nav-list-item">Kruzo Aero</li>
-              <li className="footer-nav-list-item">Ergonomic</li>
+              <FooterListItem>Nordic Chair</FooterListItem>
+              <FooterListItem>Kruzo Aero</FooterListItem>
+              <FooterListItem>Ergonomic</FooterListItem>
             </FooterList>
-          </div>
-        </div>
-        <div className="footer-social-media">
+          </FooterNav>
+        </FooterInfo>
+        <FooterSocialMedia>
           <a href="#">
             <img src={ellipse1} />
-            <img src={facebook} />
+            <SocialIcon src={facebook} />
           </a>
           <a href="#">
             <img src={ellipse1} />
-            <img src={instagram} />
+            <SocialIcon src={instagram} />
           </a>
           <a href="#">
             <img src={ellipse1} />
-            <img src={twitter} />
+            <SocialIcon src={twitter} />
           </a>
           <a href="#">
             <img src={ellipse1} />
-            <img src={linkedIn} />
+            <SocialIcon src={linkedIn} />
           </a>
-        </div>
-        <div className="footer-copyright">
-          <p>Copyright 2022 degraft87@gmail.com. All Rights Reserved.</p>
-          <a href="#">Terms & Conditions</a>
-          <a href="#">Privacy Policy</a>
-        </div>
+        </FooterSocialMedia>
+        <FooterCopyright>
+          <Copyright>
+            Copyright 2022 degraft87@gmail.com. All Rights Reserved.
+          </Copyright>
+          <TermsAndConditions href="#">Terms & Conditions</TermsAndConditions>
+          <PrivacyPolicy href="#">Privacy Policy</PrivacyPolicy>
+        </FooterCopyright>
       </FooterStyled>
     </footer>
   );
