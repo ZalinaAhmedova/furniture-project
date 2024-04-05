@@ -1,12 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import dotted from "../images/dotted2.png";
-import previewImg from "../images/why-choose-us-img1.png";
-import ellipse2 from "../images/ellipse2.svg";
-import truck from "../images/truck.svg";
-import shopBag from "../images/shop_bag.svg";
-import support from "../images/support.svg";
-import returnImg from "../images/return.svg";
+import { ADVANTAGES_ITEMS, ADVANTAGES_IMG } from "../data/advantagesData";
 
 const AdvantagesSection = styled.section`
   width: 100%;
@@ -100,47 +94,19 @@ function Advantages() {
             vivethe as it was for us to know what was to be done. the
           </InfoText>
           <AdvantagesList>
-            <AdvantagesItem>
-              <IconImg src={truck}></IconImg>
-              <EllipseImg src={ellipse2}></EllipseImg>
-              <ItemTitle>Fast & Free Shipping</ItemTitle>
-              <ItemText>
-                Donec mattis porta eros, aliquet finibus risus interdum at.
-                Nulla vivethe as it was
-              </ItemText>
-            </AdvantagesItem>
-            <AdvantagesItem>
-              <IconImg src={shopBag}></IconImg>
-              <EllipseImg src={ellipse2}></EllipseImg>
-              <ItemTitle>Easy to Shop</ItemTitle>
-              <ItemText>
-                Donec mattis porta eros, aliquet finibus risus interdum at.
-                Nulla vivethe as it was
-              </ItemText>
-            </AdvantagesItem>
-            <AdvantagesItem>
-              <IconImg src={support}></IconImg>
-              <EllipseImg src={ellipse2}></EllipseImg>
-              <ItemTitle>24/7 Support</ItemTitle>
-              <ItemText>
-                Donec mattis porta eros, aliquet finibus risus interdum at.
-                Nulla vivethe as it was
-              </ItemText>
-            </AdvantagesItem>
-            <AdvantagesItem>
-              <IconImg src={returnImg}></IconImg>
-              <EllipseImg src={ellipse2}></EllipseImg>
-              <ItemTitle>Hassle Free Returns</ItemTitle>
-              <ItemText>
-                Donec mattis porta eros, aliquet finibus risus interdum at.
-                Nulla vivethe as it was
-              </ItemText>
-            </AdvantagesItem>
+            {ADVANTAGES_ITEMS.map(item => (
+              <AdvantagesItem key={item.id_}>
+                <IconImg src={item.iconSrc}/>
+                <EllipseImg src={item.ellipseIcon}/>
+                <ItemTitle>{item.title}</ItemTitle>
+                <ItemText>{item.text}</ItemText>
+              </AdvantagesItem>
+            ))}
           </AdvantagesList>
         </Info>
         <div>
-          <Dotted src={dotted} height="176px"></Dotted>
-          <PreviewImg src={previewImg} height="630px"></PreviewImg>
+          <Dotted src={ADVANTAGES_IMG[0].imgSrc} height={ADVANTAGES_IMG[0].imgHeight} />
+          <PreviewImg src={ADVANTAGES_IMG[1].imgSrc} height={ADVANTAGES_IMG[1].imgHeight} />
         </div>
       </AdvantagesContainer>
     </AdvantagesSection>

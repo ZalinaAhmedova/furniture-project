@@ -71,8 +71,8 @@ function Banner() {
             <ButtonText>Shop Now</ButtonText>
           </ShopButton>
         </InfoContainer>
-        <Couch1Img src={couch1} alt="Couch"></Couch1Img>
-        <DottedImg src={dotted}></DottedImg>
+        <Couch1Img src={couch1} alt="Couch" />
+        <DottedImg src={dotted} />
       </BannerContainer>
     </BannerSection>
   );

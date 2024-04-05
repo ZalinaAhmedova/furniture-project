@@ -1,9 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
-import product1 from "../images/product-1.png";
-import product2 from "../images/product-2.png";
-import product3 from "../images/product-3.png";
+import styled from "styled-components";
+import { PREVIEW_PRODUCTS } from "../data/goodsPreviewData";
 
 const GoodsPreviewSection = styled.section`
   width: 100%;
@@ -60,7 +58,7 @@ const Product = styled.div`
 `;
 
 const ProductName = styled.p`
-  line-height:var(--lh-md);
+  line-height: var(--lh-md);
   font-weight: bold;
   margin-top: 44px;
   text-align: center;
@@ -88,21 +86,13 @@ function GoodsPreview() {
             <ButtonText>Explore</ButtonText>
           </ExploreButton>
         </GoodsPreviewInfo>
-        <Product>
-          <img height="261px" src={product1}></img>
-          <ProductName>Nordic Chair</ProductName>
-          <ProductPrice>$50.00</ProductPrice>
-        </Product>
-        <Product>
-          <img height="261px" src={product2}></img>
-          <ProductName>Kruzo Aero Chair</ProductName>
-          <ProductPrice>$78.00</ProductPrice>
-        </Product>
-        <Product>
-          <img height="261px" src={product3}></img>
-          <ProductName>Ergonomic Chair</ProductName>
-          <ProductPrice>$43.00</ProductPrice>
-        </Product>
+        {PREVIEW_PRODUCTS.map((product) => (
+          <Product key={product.id_}>
+            <img height={product.imgHeight} src={product.imgSrc} />
+            <ProductName>{product.name}</ProductName>
+            <ProductPrice>{product.price}</ProductPrice>
+          </Product>
+        ))}
       </GoodsPreviewContainer>
     </GoodsPreviewSection>
   );

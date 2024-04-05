@@ -59,7 +59,7 @@ function Header() {
           <NavItem to="/shop">Shop</NavItem>
         </Nav>
         <CartStyled to="/shoppingcart">
-          <img src={cart} alt="Shopping Cart"></img>
+          <img src={cart} alt="Shopping Cart" />
         </CartStyled>
       </HeaderContainer>
     </HeaderStyled>

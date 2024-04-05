@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { v4 as uuid } from "uuid";
+import { FOOTER_NAV_ITEMS, SOCIAL_ICONS } from "../data/footerData";
 import emailIcon from "../images/email_icon.svg";
 import sendRectangle from "../images/send_rectangle.svg";
 import paperPlane from "../images/paper_plane.svg";
 import sofa1 from "../images/sofa1.png";
-import ellipse1 from "../images/ellipse1.svg";
-import facebook from "../images/facebook.svg";
-import instagram from "../images/instagram.svg";
-import twitter from "../images/twitter.svg";
-import linkedIn from "../images/linked-in.svg";
+
+const footerId = uuid(); //не генерирует уникальные id
 
 const SubscriptionArea = styled.div`
   width: 1166px;
@@ -99,13 +98,14 @@ const FooterNav = styled.div`
   width: 583px;
 `;
 
-const FooterList = styled.ul``;
-
-const FooterListItem = styled.li`
-  text-decoration: none;
-  line-height: var(--lh-lg);
-  font-size: var(--fs-sm);
+const FooterList = styled.ul`
   list-style-type: none;
+  line-height: var(--lh-lg);
+`;
+
+const FooterListItem = styled.a`
+  text-decoration: none;
+  font-size: var(--fs-sm);
 `;
 
 const FooterSocialMedia = styled.div`
@@ -148,14 +148,14 @@ function Footer() {
       <SubscriptionArea>
         <Form action="">
           <Label>
-            <EmailIcon src={emailIcon} alt="E-mail icon"></EmailIcon>
+            <EmailIcon src={emailIcon} alt="E-mail icon" />
             <LabelText>Subscribe to Newsletter</LabelText>
           </Label>
           <InputContainer>
             <InputStyled type="text" placeholder="Enter your name" />
             <InputStyled type="email" placeholder="Enter your e-mail" />
             <SendEmailLink href="#">
-              <img src={sendRectangle} alt="Send e-mail icon"></img>
+              <img src={sendRectangle} alt="Send e-mail icon" />
               <PaperPlaneImg
                 src={paperPlane}
                 alt="Send e-mail icon"
@@ -163,7 +163,7 @@ function Footer() {
             </SendEmailLink>
           </InputContainer>
         </Form>
-        <SofaImg src={sofa1} alt="Sofa1"></SofaImg>
+        <SofaImg src={sofa1} alt="Sofa1" />
       </SubscriptionArea>
       <FooterStyled>
         <FooterTitle>Furni.</FooterTitle>
@@ -175,47 +175,28 @@ function Footer() {
             this is
           </FooterInfoText>
           <FooterNav>
-            <FooterList>
-              <FooterListItem>About us</FooterListItem>
-              <FooterListItem>Services</FooterListItem>
-              <FooterListItem>Blog</FooterListItem>
-              <FooterListItem>Contact us</FooterListItem>
-            </FooterList>
-            <FooterList>
-              <FooterListItem>Support</FooterListItem>
-              <FooterListItem>Knowledge base</FooterListItem>
-              <FooterListItem>Live chat</FooterListItem>
-            </FooterList>
-            <FooterList>
-              <FooterListItem>Jobs</FooterListItem>
-              <FooterListItem>Our team</FooterListItem>
-              <FooterListItem>Leadership</FooterListItem>
-              <FooterListItem>Privacy Policy</FooterListItem>
-            </FooterList>
-            <FooterList>
-              <FooterListItem>Nordic Chair</FooterListItem>
-              <FooterListItem>Kruzo Aero</FooterListItem>
-              <FooterListItem>Ergonomic</FooterListItem>
-            </FooterList>
+            {FOOTER_NAV_ITEMS.map((list) => (
+              <FooterList key={footerId}>
+                {list.map((item) => (
+                  <li key={item.id_}>
+                    <FooterListItem href={item.itemSrc}>
+                      {item.title}
+                    </FooterListItem>
+                  </li>
+                ))}
+              </FooterList>
+            ))}
           </FooterNav>
         </FooterInfo>
         <FooterSocialMedia>
-          <a href="#">
-            <img src={ellipse1} />
-            <SocialIcon src={facebook} />
-          </a>
-          <a href="#">
-            <img src={ellipse1} />
-            <SocialIcon src={instagram} />
-          </a>
-          <a href="#">
-            <img src={ellipse1} />
-            <SocialIcon src={twitter} />
-          </a>
-          <a href="#">
-            <img src={ellipse1} />
-            <SocialIcon src={linkedIn} />
-          </a>
+          {
+            SOCIAL_ICONS.map(icon => (
+              <a href="#" key={icon.id_}>
+                <img src={icon.ellipseImg} />
+                <SocialIcon src={icon.imgSrc} />
+              </a>
+            ))
+          }
         </FooterSocialMedia>
         <FooterCopyright>
           <Copyright>
