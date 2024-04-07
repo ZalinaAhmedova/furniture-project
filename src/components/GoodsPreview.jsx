@@ -5,17 +5,16 @@ import { PREVIEW_PRODUCTS } from "../data/goodsPreviewData";
 
 const GoodsPreviewSection = styled.section`
   width: 100%;
-  height: 663px;
   background-color: var(--bg-gray);
 `;
 
 const GoodsPreviewContainer = styled.div`
-  width: 1081px;
-  height: 663px;
-  margin: 0 auto;
+  width: calc(100% - 130px*2);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
+  padding-top: 165px;
 `;
 
 const GoodsPreviewInfo = styled.div`
@@ -25,7 +24,7 @@ const GoodsPreviewInfo = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: var(--fs-lg);
+  font-size: var(--fs-xl);
   font-weight: bold;
   margin-bottom: 27px;
 `;
@@ -65,7 +64,7 @@ const ProductName = styled.p`
 `;
 
 const ProductPrice = styled.p`
-  font-size: 18px;
+  font-size: var(--fs-lg);
   line-height: var(--lh-md);
   font-weight: var(--semi-bold);
   margin-top: 1px;

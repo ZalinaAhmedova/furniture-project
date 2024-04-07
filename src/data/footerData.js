@@ -2,7 +2,6 @@ import facebook from "../images/facebook.svg";
 import instagram from "../images/instagram.svg";
 import twitter from "../images/twitter.svg";
 import linkedIn from "../images/linked-in.svg";
-import ellipse1 from "../images/ellipse1.svg";
 
 const FOOTER_NAV_ITEMS = [
     [
@@ -88,22 +87,18 @@ const FOOTER_NAV_ITEMS = [
   const SOCIAL_ICONS = [
     {
       imgSrc: facebook,
-      ellipseImg: ellipse1,
       id_: "1",
     },
     {
       imgSrc: instagram,
-      ellipseImg: ellipse1,
       id_: "2",
     },
     {
       imgSrc: twitter,
-      ellipseImg: ellipse1,
       id_: "3",
     },
     {
       imgSrc: linkedIn,
-      ellipseImg: ellipse1,
       id_: "4",
     },
   ];

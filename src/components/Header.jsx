@@ -6,26 +6,26 @@ import cart from "../images/cart.png";
 const HeaderStyled = styled.header`
   width: 100%;
   background-color: var(--bg-green);
-  height: 91px;
 `;
 
 const HeaderContainer = styled.div`
   margin: 0 auto;
-  width: 1240px;
+  width: calc(100% - 130px * 2);
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 `;
 
 const LogoStyled = styled(Link)`
+  margin: 25px 0;
   color: var(--white);
   text-decoration: none;
-  font-size: 32px;
-  margin-top: 49px;
+  font-size: var(--fs-xl);
 `;
 
 const Nav = styled.ul`
-  margin-top: 60px;
-  margin-left: 433px;
   width: 160px;
+  margin: 35px 0;
   display: flex;
   justify-content: space-between;
 `;
@@ -43,10 +43,13 @@ const NavItem = styled(Link)`
 `;
 
 const CartStyled = styled(Link)`
+  margin: 30px 0;
   color: var(--white);
   text-decoration: none;
-  margin-top: 13px;
-  margin-left: 438px;
+`;
+
+const CartImg = styled.img`
+  display: block;
 `;
 
 function Header() {
@@ -59,7 +62,7 @@ function Header() {
           <NavItem to="/shop">Shop</NavItem>
         </Nav>
         <CartStyled to="/shoppingcart">
-          <img src={cart} alt="Shopping Cart" />
+          <CartImg width="24px" height="27px" src={cart} alt="Shopping Cart" />
         </CartStyled>
       </HeaderContainer>
     </HeaderStyled>

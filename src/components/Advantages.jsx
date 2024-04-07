@@ -1,30 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import { ADVANTAGES_ITEMS, ADVANTAGES_IMG } from "../data/advantagesData";
+import ellipse2 from "../images/ellipse2.svg";
 
 const AdvantagesSection = styled.section`
   width: 100%;
-  height: 870px;
   background-color: var(--bg-gray);
 `;
 
 const AdvantagesContainer = styled.div`
+  width: calc(100% - 130px * 2);
   margin: 0 auto;
-  width: 1133px;
-  height: 713px;
+  padding-top: 165px;
   display: flex;
+  justify-content: space-around;
   align-items: center;
 `;
 
 const Info = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 4px;
 `;
 
 const Title = styled.h2`
-  font-size: var(--fs-lg);
-  line-height: 41px;
+  font-size: var(--fs-xl);
+  line-height: var(--lh-xl);
   font-weight: var(--semi-bold);
   margin-bottom: 27px;
 `;
@@ -94,10 +94,10 @@ function Advantages() {
             vivethe as it was for us to know what was to be done. the
           </InfoText>
           <AdvantagesList>
-            {ADVANTAGES_ITEMS.map(item => (
-              <AdvantagesItem key={item.id_}>
-                <IconImg src={item.iconSrc}/>
-                <EllipseImg src={item.ellipseIcon}/>
+            {ADVANTAGES_ITEMS.map((item, id) => (
+              <AdvantagesItem key={id}>
+                <IconImg src={item.iconSrc} />
+                <EllipseImg src={ellipse2} />
                 <ItemTitle>{item.title}</ItemTitle>
                 <ItemText>{item.text}</ItemText>
               </AdvantagesItem>
@@ -105,8 +105,14 @@ function Advantages() {
           </AdvantagesList>
         </Info>
         <div>
-          <Dotted src={ADVANTAGES_IMG[0].imgSrc} height={ADVANTAGES_IMG[0].imgHeight} />
-          <PreviewImg src={ADVANTAGES_IMG[1].imgSrc} height={ADVANTAGES_IMG[1].imgHeight} />
+          <Dotted
+            src={ADVANTAGES_IMG[0].imgSrc}
+            height={ADVANTAGES_IMG[0].imgHeight}
+          />
+          <PreviewImg
+            src={ADVANTAGES_IMG[1].imgSrc}
+            height={ADVANTAGES_IMG[1].imgHeight}
+          />
         </div>
       </AdvantagesContainer>
     </AdvantagesSection>

@@ -1,22 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import { v4 as uuid } from "uuid";
 import { FOOTER_NAV_ITEMS, SOCIAL_ICONS } from "../data/footerData";
 import emailIcon from "../images/email_icon.svg";
 import sendRectangle from "../images/send_rectangle.svg";
 import paperPlane from "../images/paper_plane.svg";
 import sofa1 from "../images/sofa1.png";
-
-const footerId = uuid(); //не генерирует уникальные id
+import ellipse1 from "../images/ellipse1.svg";
 
 const SubscriptionArea = styled.div`
-  width: 1166px;
+  width: calc(100% - 130px * 2);
   display: flex;
+  gap: 104px;
+  justify-content: space-around;
   margin: 0 auto;
+  padding-top: 165px;
 `;
 
 const Form = styled.form`
-  margin-top: 94px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Label = styled.label`
@@ -29,7 +31,7 @@ const EmailIcon = styled.img`
 `;
 
 const LabelText = styled.p`
-  font-size: 18px;
+  font-size: var(--fs-lg);
   font-weight: var(--medium);
   margin-left: 12px;
   margin-top: 3px;
@@ -63,39 +65,41 @@ const PaperPlaneImg = styled.img`
 
 const SofaImg = styled.img`
   position: relative;
-  left: 104px;
   bottom: 85px;
 `;
 
 const FooterStyled = styled.div`
-  width: 1166px;
+  width: calc(100% - 130px * 2);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 `;
 
 const FooterTitle = styled.h2`
-  font-size: 32px;
+  font-size: var(--fs-xl);
   font-weight: var(--semi-bold);
   margin-bottom: 19px;
 `;
 
 const FooterInfo = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-bottom: 43px;
+  min-width: 1080px;
 `;
 
 const FooterInfoText = styled.p`
   font-size: var(--fs-sm);
   line-height: var(--lh-md);
-  width: 360px;
+  min-width: 360px;
   margin-right: 65px;
 `;
 
 const FooterNav = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 583px;
+  justify-content: flex-start;
+  gap: 70px;
+  min-width: 583px;
 `;
 
 const FooterList = styled.ul`
@@ -113,8 +117,10 @@ const FooterSocialMedia = styled.div`
 `;
 
 const FooterCopyright = styled.div`
+  min-width: 1140px;
   margin-bottom: 93px;
   display: flex;
+  justify-content: space-between;
 `;
 
 const SocialIcon = styled.img`
@@ -126,8 +132,7 @@ const SocialIcon = styled.img`
 `;
 
 const Copyright = styled.p`
-  margin-right: 512px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   line-height: var(--lh-md);
 `;
 
@@ -175,8 +180,8 @@ function Footer() {
             this is
           </FooterInfoText>
           <FooterNav>
-            {FOOTER_NAV_ITEMS.map((list) => (
-              <FooterList key={footerId}>
+            {FOOTER_NAV_ITEMS.map((list, id) => (
+              <FooterList key={id}>
                 {list.map((item) => (
                   <li key={item.id_}>
                     <FooterListItem href={item.itemSrc}>
@@ -192,7 +197,7 @@ function Footer() {
           {
             SOCIAL_ICONS.map(icon => (
               <a href="#" key={icon.id_}>
-                <img src={icon.ellipseImg} />
+                <img src={ellipse1} />
                 <SocialIcon src={icon.imgSrc} />
               </a>
             ))
