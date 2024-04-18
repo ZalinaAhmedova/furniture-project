@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const CategoriesArea = styled.ul`
-  list-style-type: none;
+const CategoriesWrapper = styled.ul`
 `;
 
 const CategoriesTitle = styled.h2`
@@ -15,7 +14,6 @@ const CategoriesTitle = styled.h2`
 `;
 
 const Subcategories = styled.ul`
-  list-style-type: none;
   font-size: var(--fs-sm);
 `;
 
@@ -34,7 +32,7 @@ const SubcategoriesItem = styled.li`
 
 function Categories() {
   return (
-    <CategoriesArea>
+    <CategoriesWrapper>
       <CategoriesTitle>Categories</CategoriesTitle>
       <CategoriesItem>All Categories</CategoriesItem>
       <CategoriesItem>
@@ -69,7 +67,7 @@ function Categories() {
           <SubcategoriesItem>Dressing Tables</SubcategoriesItem>
         </Subcategories>
       </CategoriesItem>
-    </CategoriesArea>
+    </CategoriesWrapper>
   );
 }
 

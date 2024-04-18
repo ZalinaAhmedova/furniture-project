@@ -1,16 +1,16 @@
 import React from "react";
-import ShoppingContinueArea from "../components/ShoppingContinueArea";
+import ShoppingContinueWrapper from "../components/ShoppingContinueWrapper";
 import Cart from "../components/Cart";
 import DeliveryCardSection from "../components/DeliveryCardSection";
 
-function Shoppingcartpage() {
+function ShoppingCartPage() {
   return (
     <>
-      <ShoppingContinueArea />
+      <ShoppingContinueWrapper />
       <Cart />
       <DeliveryCardSection />
     </>
   );
 }
 
-export default Shoppingcartpage;
+export default ShoppingCartPage;

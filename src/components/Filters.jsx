@@ -13,7 +13,6 @@ const FiltersTitle = styled.p`
 `;
 
 const FiltersList = styled.ul`
-  list-style-type: none;
 `;
 
 const FilterListItem = styled.li`
@@ -61,21 +60,21 @@ function Filters() {
       <FiltersTitle>Filters</FiltersTitle>
       <FiltersList>
         <FilterListItem>
-          <FiltersLabel for="brands">
+          <FiltersLabel htmlFor="brands">
             <FilterInput type="checkbox" id="brands" />
             <FilterFakeSpan></FilterFakeSpan>
             <FilterSpan>Brands</FilterSpan>
           </FiltersLabel>
         </FilterListItem>
         <FilterListItem>
-          <FiltersLabel for="price">
+          <FiltersLabel htmlFor="price">
             <FilterInput type="checkbox" id="price" />
             <FilterFakeSpan></FilterFakeSpan>
             <FilterSpan>Price from Lowest to Highest</FilterSpan>
           </FiltersLabel>
         </FilterListItem>
         <FilterListItem>
-          <FiltersLabel for="instock">
+          <FiltersLabel htmlFor="instock">
             <FilterInput type="checkbox" id="instock" />
             <FilterFakeSpan></FilterFakeSpan>
             <FilterSpan>In Stock</FilterSpan>

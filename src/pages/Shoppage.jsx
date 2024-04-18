@@ -7,27 +7,27 @@ import Search from "../components/Search";
 import ViewCatalogButton from "../components/ViewCatalogButton";
 import GoodsCatalog from "../components/GoodsCatalog";
 
-const ShoppageArea = styled.section`
+const ShopPageWrapper = styled.section`
   width: calc(100% - 130px * 2);
   margin: 0 auto;
   display: flex;
 `;
 
-const CategoriesArea = styled.div`
+const CategoriesWrapper = styled.div`
   width: 230px;
   margin-top: 50px;
   padding-right: 10px;
   border-right: 1px solid var(--bg-gray);
 `;
 
-const GoodsArea = styled.div`
+const GoodsWrapper = styled.div`
   width: calc(100% - 130px * 2);
   margin-top: 50px;
   display: flex;
   flex-direction: column;
 `;
 
-const SortingAndSeacrhArea = styled.div`
+const ControllersWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
@@ -35,23 +35,23 @@ const SortingAndSeacrhArea = styled.div`
   padding-bottom: 25px;
 `;
 
-function Shoppage() {
+function ShopPage() {
   return (
-    <ShoppageArea>
-      <CategoriesArea>
+    <ShopPageWrapper>
+      <CategoriesWrapper>
         <Categories />
         <Filters />
-      </CategoriesArea>
-      <GoodsArea>
-        <SortingAndSeacrhArea>
+      </CategoriesWrapper>
+      <GoodsWrapper>
+        <ControllersWrapper>
           <Sorting />
           <Search />
           <ViewCatalogButton />
-        </SortingAndSeacrhArea>
+        </ControllersWrapper>
         <GoodsCatalog />
-      </GoodsArea>
-    </ShoppageArea>
+      </GoodsWrapper>
+    </ShopPageWrapper>
   );
 }
 
-export default Shoppage;
+export default ShopPage;

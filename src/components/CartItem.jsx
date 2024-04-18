@@ -79,31 +79,27 @@ const TrashImg = styled.img`
   cursor: pointer;
 `;
 
-function CartItem({cartProducts}) {
+function CartItem({imgSrc, brand, itemName, price, quantity = 2}) {
   return (
-    <>
-      {cartProducts.map((cartProduct) => (
-        <ShoppingCartItem key={cartProduct._id}>
-          <ShoppingCartItemImg src={cartProduct.imgSrc} />
-          <ShoppingCartItemNameContainer>
-            <ShoppingCartItemBrand>{cartProduct.brand}</ShoppingCartItemBrand>
-            <ShoppingCartItemName>{cartProduct.name}</ShoppingCartItemName>
-          </ShoppingCartItemNameContainer>
-          <QuantityValueContainer>
-            <QuantityValue>1</QuantityValue>
-            <div>
-              <IncrementImg src={incrementImg} />
-              <DecrementImg src={decrementImg} />
-            </div>
-          </QuantityValueContainer>
-          <div>
-            <CurrencySign>$</CurrencySign>
-            <ShoppingCartItemPrice>{cartProduct.price}</ShoppingCartItemPrice>
-          </div>
-          <TrashImg src={trashCan} />
-        </ShoppingCartItem>
-      ))}
-    </>
+    <ShoppingCartItem>
+      <ShoppingCartItemImg src={imgSrc} />
+      <ShoppingCartItemNameContainer>
+        <ShoppingCartItemBrand>{brand}</ShoppingCartItemBrand>
+        <ShoppingCartItemName>{itemName}</ShoppingCartItemName>
+      </ShoppingCartItemNameContainer>
+      <QuantityValueContainer>
+        <QuantityValue>{quantity}</QuantityValue>
+        <div>
+          <IncrementImg src={incrementImg} />
+          <DecrementImg src={decrementImg} />
+        </div>
+      </QuantityValueContainer>
+      <div>
+        <CurrencySign>$</CurrencySign>
+        <ShoppingCartItemPrice>{price}</ShoppingCartItemPrice>
+      </div>
+      <TrashImg src={trashCan} />
+    </ShoppingCartItem>
   );
 }
 

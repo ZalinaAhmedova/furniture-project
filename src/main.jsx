@@ -1,14 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import styled, { createGlobalStyle } from 'styled-components'
-import App from './App.jsx'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createGlobalStyle } from "styled-components";
+import store from "./store/index.js";
+import App from "./App.jsx";
+import "./styles/index.css";
+import "./styles/reset.css";
 
 const Global = createGlobalStyle`
   * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
     font-family: var(--family);
     font-weight: normal;
@@ -37,11 +38,13 @@ const Global = createGlobalStyle`
     --lh-lg: 28px;
     --lh-xl: 41px;
   }
-`
+`;
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Global />
-    <App />
-  </BrowserRouter>,
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <Global />
+      <App />
+    </BrowserRouter>
+  </Provider>
+);

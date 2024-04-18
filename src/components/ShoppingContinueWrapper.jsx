@@ -20,7 +20,7 @@ const ShoppingContinue = styled(Link)`
   border-bottom: 1.5px solid #d0cfcf;
 `;
 
-function ShoppingContinueArea() {
+function ShoppingContinueWrapper() {
   return (
     <ShoppingContinueContainer>
       <ShoppingContinue to="/shop">
@@ -31,4 +31,4 @@ function ShoppingContinueArea() {
   );
 }
 
-export default ShoppingContinueArea;
+export default ShoppingContinueWrapper;

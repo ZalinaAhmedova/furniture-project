@@ -7,7 +7,7 @@ import paperPlane from "../images/paper_plane.svg";
 import sofa1 from "../images/sofa1.png";
 import ellipse1 from "../images/ellipse1.svg";
 
-const SubscriptionArea = styled.div`
+const SubscriptionWrapper = styled.div`
   width: calc(100% - 130px * 2);
   display: flex;
   gap: 104px;
@@ -103,7 +103,6 @@ const FooterNav = styled.div`
 `;
 
 const FooterList = styled.ul`
-  list-style-type: none;
   line-height: var(--lh-lg);
 `;
 
@@ -150,7 +149,7 @@ const PrivacyPolicy = styled.a`
 function Footer() {
   return (
     <footer>
-      <SubscriptionArea>
+      <SubscriptionWrapper>
         <Form action="">
           <Label>
             <EmailIcon src={emailIcon} alt="E-mail icon" />
@@ -169,7 +168,7 @@ function Footer() {
           </InputContainer>
         </Form>
         <SofaImg src={sofa1} alt="Sofa1" />
-      </SubscriptionArea>
+      </SubscriptionWrapper>
       <FooterStyled>
         <FooterTitle>Furni.</FooterTitle>
         <FooterInfo>
@@ -180,8 +179,8 @@ function Footer() {
             this is
           </FooterInfoText>
           <FooterNav>
-            {FOOTER_NAV_ITEMS.map((list, id) => (
-              <FooterList key={id}>
+            {FOOTER_NAV_ITEMS.map((list, index) => (
+              <FooterList key={index}>
                 {list.map((item) => (
                   <li key={item.id_}>
                     <FooterListItem href={item.itemSrc}>

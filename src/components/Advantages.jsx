@@ -94,8 +94,8 @@ function Advantages() {
             vivethe as it was for us to know what was to be done. the
           </InfoText>
           <AdvantagesList>
-            {ADVANTAGES_ITEMS.map((item, id) => (
-              <AdvantagesItem key={id}>
+            {ADVANTAGES_ITEMS.map((item, index) => (
+              <AdvantagesItem key={index}>
                 <IconImg src={item.iconSrc} />
                 <EllipseImg src={ellipse2} />
                 <ItemTitle>{item.title}</ItemTitle>

@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { addCartItem } from "../store/cartSlice";
 import { PRODUCTS } from "../data/productsData";
 
 const GoodsCatalogContainer = styled.div`
@@ -48,17 +50,26 @@ const ProductButton = styled.button`
 `;
 
 function GoodsCatalog() {
+  const dispatch = useDispatch();
+  const addToCart = () => dispatch(addCartItem());
+  const handleClick = () => {
+    
+  }
   return (
     <GoodsCatalogContainer>
       {PRODUCTS.map((product) => (
         <GoodsCatalogItem key={product._id}>
           <img width="200" height="150" src={product.imgSrc} />
           <ProductBrand>{product.brand}</ProductBrand>
-          <ProductName>{product.name}</ProductName>
+          <ProductName>{product.itemName}</ProductName>
           <ProductPriceValue>US$ </ProductPriceValue>
           <ProductPrice>{product.price}</ProductPrice>
           <ProductButtonContainer>
-            <ProductButton>Add to cart</ProductButton>
+            <ProductButton
+              onClick={handleClick}
+            >
+              Add to cart
+            </ProductButton>
           </ProductButtonContainer>
         </GoodsCatalogItem>
       ))}

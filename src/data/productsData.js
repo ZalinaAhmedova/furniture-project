@@ -9,7 +9,7 @@ import camaleondaModular from "../images/products_img/camaleonda-modular-sofa.we
 
 const PRODUCTS = [
     {
-        name: "Pacific Swivel Armchair",
+        itemName: "Pacific Swivel Armchair",
         brand: "Moroso",
         price: "3,748",
         description: "",
@@ -20,7 +20,7 @@ const PRODUCTS = [
 
     },
     {
-        name: "Chisel Lounge Chair",
+        itemName: "Chisel Lounge Chair",
         brand: "Hay",
         price: "486",
         description: "",
@@ -31,7 +31,7 @@ const PRODUCTS = [
 
     },
     {
-        name: "Archibald Armchair",
+        itemName: "Archibald Armchair",
         brand: "Poltrona Frau",
         price: "2,944",
         description: "",
@@ -42,7 +42,7 @@ const PRODUCTS = [
 
     },
     {
-        name: "Rico Divan Boucle",
+        itemName: "Rico Divan Boucle",
         brand: "Ferm Living",
         price: "2,878",
         description: "",
@@ -53,7 +53,7 @@ const PRODUCTS = [
 
     },
     {
-        name: "Le Bambole - Bibambola Sofa",
+        itemName: "Le Bambole - Bibambola Sofa",
         brand: "B&B Italia",
         price: "3,311",
         description: "",
@@ -64,7 +64,7 @@ const PRODUCTS = [
 
     },
     {
-        name: "Camaleonda Modular Sofa",
+        itemName: "Camaleonda Modular Sofa",
         brand: "B&B Italia",
         price: "2,520",
         description: "",

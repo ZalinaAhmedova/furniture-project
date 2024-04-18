@@ -2,15 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const SearchContainer = styled.div`
-  position: relative;
 `;
 
 const SearchInput = styled.input`
+  position: relative;
   width: 200px;
   height: 35px;
-  float: left;
   padding-left: 30px;
-  padding-right: 10px;
   font-size: var(--fs-sm);
   border: none;
   border-radius: 3px;
@@ -19,15 +17,18 @@ const SearchInput = styled.input`
 
 const SearchIcon = styled.span`
   position: absolute;
-  top: 18%;
-  left: 4%;
+  width: 15px;
+  height: 16px;
+  z-index: 1;
+  margin-top: 6px;
+  margin-left: 7px;
 `;
 
 function Search() {
   return (
     <SearchContainer>
       <SearchIcon>
-        <i class="fa fa-search" />
+        <i className="fa fa-search" />
       </SearchIcon>
       <SearchInput type="search" id="search" placeholder="Search..." />
     </SearchContainer>

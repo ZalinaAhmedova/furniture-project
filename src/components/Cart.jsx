@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import { PRODUCTS } from "../data/productsData";
 import CartItem from "./CartItem";
 
@@ -26,12 +27,17 @@ const CartList = styled.div`
 `;
 
 function Cart() {
+  const cartItems = useSelector(state => state.cartItems.cartItems);
   return (
     <CartSection>
       <CartTitle>Shopping Cart</CartTitle>
       <CartText>You have 3 item in your cart</CartText>
       <CartList>
-        <CartItem cartProducts={PRODUCTS} />
+        {/* доработай отрисовку каждого элемента корзины и сделай чтобы элементы добавлялись 
+        по нажатию на кнопку add to cart с пом. usedispatch, потом реализуй редьюсеры удаления, изменения количества */}
+        {cartItems.map(product => (
+          <CartItem key={product._id} {...product}/>
+        ))}
       </CartList>
     </CartSection>
   );
