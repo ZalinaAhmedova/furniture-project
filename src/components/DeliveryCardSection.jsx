@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { calculateTotal } from "../store/cartSlice";
 import Delivery from "./Delivery";
 import Card from "./Card";
 import arrow2 from "../images/arrow2.png";
@@ -69,6 +72,14 @@ const CheckoutButton = styled.button`
 `;
 
 function DeliveryCardSection() {
+  const cartItems = useSelector((state) => state.cart.items);
+  const totalCost = useSelector((state) => state.cart.totalCost);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(calculateTotal());
+  }, [cartItems]);
+
   return (
     <>
       <DeliveryCardSectionStyled>
@@ -80,7 +91,7 @@ function DeliveryCardSection() {
           <Title>Subtotal</Title>
           <CostContainer>
             <ValueSign>$ </ValueSign>
-            <Cost>7,178</Cost>
+            <Cost>{totalCost}</Cost>
           </CostContainer>
           <Title>Shipping</Title>
           <CostContainer>
@@ -90,7 +101,7 @@ function DeliveryCardSection() {
           <Title>Total</Title>
           <CostContainer>
             <ValueSign>$ </ValueSign>
-            <Cost>7,208</Cost>
+            <Cost>{totalCost + 20}</Cost>
           </CostContainer>
         </TotalContainer>
         <CheckoutButton>

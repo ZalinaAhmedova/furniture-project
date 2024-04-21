@@ -22,12 +22,12 @@ const ButtonImg = styled.img`
 function ViewCatalogButton() {
   return (
     <>
+      {/* <Button>
+          <img height="17px" src={viewImg2} />
+        </Button> */}
       <Button>
         <ButtonImg src={viewImg1} />
       </Button>
-      {/*<Button>
-        <img height="17px" src={viewImg2} />
-      </Button>*/}
     </>
   );
 }

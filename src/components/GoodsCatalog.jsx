@@ -51,22 +51,23 @@ const ProductButton = styled.button`
 
 function GoodsCatalog() {
   const dispatch = useDispatch();
-  const addToCart = () => dispatch(addCartItem());
-  const handleClick = () => {
-    
+  
+  const handleClick = (product) => {
+    dispatch(addCartItem(product));
   }
+  
   return (
     <GoodsCatalogContainer>
       {PRODUCTS.map((product) => (
         <GoodsCatalogItem key={product._id}>
           <img width="200" height="150" src={product.imgSrc} />
           <ProductBrand>{product.brand}</ProductBrand>
-          <ProductName>{product.itemName}</ProductName>
+          <ProductName>{product.name}</ProductName>
           <ProductPriceValue>US$ </ProductPriceValue>
           <ProductPrice>{product.price}</ProductPrice>
           <ProductButtonContainer>
             <ProductButton
-              onClick={handleClick}
+              onClick={() => handleClick(product)}
             >
               Add to cart
             </ProductButton>

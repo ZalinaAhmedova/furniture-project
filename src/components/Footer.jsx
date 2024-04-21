@@ -160,10 +160,7 @@ function Footer() {
             <InputStyled type="email" placeholder="Enter your e-mail" />
             <SendEmailLink href="#">
               <img src={sendRectangle} alt="Send e-mail icon" />
-              <PaperPlaneImg
-                src={paperPlane}
-                alt="Send e-mail icon"
-              ></PaperPlaneImg>
+              <PaperPlaneImg src={paperPlane} alt="Send e-mail icon" />
             </SendEmailLink>
           </InputContainer>
         </Form>
@@ -193,14 +190,12 @@ function Footer() {
           </FooterNav>
         </FooterInfo>
         <FooterSocialMedia>
-          {
-            SOCIAL_ICONS.map(icon => (
-              <a href="#" key={icon.id_}>
-                <img src={ellipse1} />
-                <SocialIcon src={icon.imgSrc} />
-              </a>
-            ))
-          }
+          {SOCIAL_ICONS.map((icon) => (
+            <a href="#" key={icon.id_}>
+              <img src={ellipse1} />
+              <SocialIcon src={icon.imgSrc} />
+            </a>
+          ))}
         </FooterSocialMedia>
         <FooterCopyright>
           <Copyright>

@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { decrementCartItem, incrementCartItem, removeCartItem } from "../store/cartSlice";
 import incrementImg from "../images/increment_button.png";
 import decrementImg from "../images/decrement_button.png";
 import trashCan from "../images/trash_can.png";
@@ -79,26 +81,37 @@ const TrashImg = styled.img`
   cursor: pointer;
 `;
 
-function CartItem({imgSrc, brand, itemName, price, quantity = 2}) {
+function CartItem({imgSrc, brand, name, price, _id, quantity}) {
+  const dispatch = useDispatch();
+  const handleRemoveButton = (_id) => {
+    dispatch(removeCartItem(_id));
+  }
+  const handleIncrementButton = (_id) => {
+    dispatch(incrementCartItem(_id));
+  }
+  const handleDecrementButton = (_id) => {
+    dispatch(decrementCartItem(_id));
+  }
+
   return (
     <ShoppingCartItem>
       <ShoppingCartItemImg src={imgSrc} />
       <ShoppingCartItemNameContainer>
         <ShoppingCartItemBrand>{brand}</ShoppingCartItemBrand>
-        <ShoppingCartItemName>{itemName}</ShoppingCartItemName>
+        <ShoppingCartItemName>{name}</ShoppingCartItemName>
       </ShoppingCartItemNameContainer>
       <QuantityValueContainer>
         <QuantityValue>{quantity}</QuantityValue>
         <div>
-          <IncrementImg src={incrementImg} />
-          <DecrementImg src={decrementImg} />
+          <IncrementImg src={incrementImg} onClick={() => handleIncrementButton(_id)}/>
+          <DecrementImg src={decrementImg} onClick={() => handleDecrementButton(_id)}/>
         </div>
       </QuantityValueContainer>
       <div>
         <CurrencySign>$</CurrencySign>
-        <ShoppingCartItemPrice>{price}</ShoppingCartItemPrice>
+        <ShoppingCartItemPrice>{price*quantity}</ShoppingCartItemPrice>
       </div>
-      <TrashImg src={trashCan} />
+      <TrashImg src={trashCan} onClick={() => handleRemoveButton(_id)}/>
     </ShoppingCartItem>
   );
 }

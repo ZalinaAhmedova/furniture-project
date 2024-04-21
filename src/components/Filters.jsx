@@ -62,21 +62,21 @@ function Filters() {
         <FilterListItem>
           <FiltersLabel htmlFor="brands">
             <FilterInput type="checkbox" id="brands" />
-            <FilterFakeSpan></FilterFakeSpan>
+            <FilterFakeSpan />
             <FilterSpan>Brands</FilterSpan>
           </FiltersLabel>
         </FilterListItem>
         <FilterListItem>
           <FiltersLabel htmlFor="price">
             <FilterInput type="checkbox" id="price" />
-            <FilterFakeSpan></FilterFakeSpan>
+            <FilterFakeSpan />
             <FilterSpan>Price from Lowest to Highest</FilterSpan>
           </FiltersLabel>
         </FilterListItem>
         <FilterListItem>
           <FiltersLabel htmlFor="instock">
             <FilterInput type="checkbox" id="instock" />
-            <FilterFakeSpan></FilterFakeSpan>
+            <FilterFakeSpan />
             <FilterSpan>In Stock</FilterSpan>
           </FiltersLabel>
         </FilterListItem>
