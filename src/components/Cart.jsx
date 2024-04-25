@@ -26,16 +26,21 @@ const CartList = styled.div`
 `;
 
 function Cart() {
-  const cartItems = useSelector(state => state.cart.items);
-  console.log(cartItems);
+  const cartItems = useSelector((state) => state.cart.items);
+  const itemsQuantity = cartItems.reduce(function (current, item) {
+    return current + item.quantity;
+  }, 0);
 
   return (
     <CartSection>
       <CartTitle>Shopping Cart</CartTitle>
-      <CartText>You have {cartItems.length} item in your cart</CartText>
+      <CartText>
+        You have {itemsQuantity}{" "}
+        {`${itemsQuantity > 1 ? "items" : "item"}`} in your cart
+      </CartText>
       <CartList>
-        {cartItems.map(product => (
-          <CartItem key={product._id} {...product}/>
+        {cartItems.map((product) => (
+          <CartItem key={product._id} {...product} />
         ))}
       </CartList>
     </CartSection>

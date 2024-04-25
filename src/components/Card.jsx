@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { CardSchema } from "../yup";
 import masterCardImg from "../images/mastercard_img.png";
 import visaImg from "../images/visa_img.png";
 import rupayImg from "../images/rupay_img.png";
@@ -29,8 +32,20 @@ const CardTypeContainer = styled.div`
 
 const CardTypeImg = styled.img`
   display: block;
+  width: 80px;
   margin-top: 10px;
+  border-radius: 15px;
   cursor: pointer;
+
+  &:hover {
+    border: 2px #CEDFF3 solid;
+    border-radius: 15px;
+  }
+
+  &:active {
+    border: 2px #A3C8F3 solid;
+    border-radius: 15px;
+  }
 `;
 
 const FormContainer = styled.div`
@@ -60,7 +75,33 @@ const Input = styled.input`
   height: 30px;
 `;
 
+const InputError = styled.input`
+  border: 1px solid red;
+  border-radius: 6px;
+  padding: 10px;
+  margin-top: 3px;
+  height: 30px;
+`;
+
+const TextField = styled.p`
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+`;
+
 function Card() {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(CardSchema),
+  });
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <CardDetails>
       <CardDetailsTitle>Card Details</CardDetailsTitle>
@@ -71,21 +112,64 @@ function Card() {
         <CardTypeImg src={rupayImg} />
       </CardTypeContainer>
       <FormContainer>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Label>name on card</Label>
-          <Input type="text" />
+          {errors?.nameOnCard ? (
+            <InputError type="text" {...register("nameOnCard")} />
+          ) : (
+            <Input type="text" {...register("nameOnCard")} />
+          )}
+          {errors?.nameOnCard?.type === "required" && (
+            <TextField>{errors.nameOnCard.message}</TextField>
+          )}
+          {errors?.nameOnCard?.type === "matches" && (
+            <TextField>{errors.nameOnCard.message}</TextField>
+          )}
         </Form>
-        <Form>
+
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Label>card number</Label>
-          <Input type="text" />
+          {errors?.cardNumber ? (
+            <InputError type="text" {...register("cardNumber")} />
+          ) : (
+            <Input type="text" {...register("cardNumber")} />
+          )}
+          {errors?.cardNumber?.type === "required" && (
+            <TextField>{errors.cardNumber.message}</TextField>
+          )}
+          {errors?.cardNumber?.type === "matches" && (
+            <TextField>{errors.cardNumber.message}</TextField>
+          )}
         </Form>
-        <Form>
+
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Label>expiration date</Label>
-          <Input type="text" />
+          {errors?.expirationDate ? (
+            <InputError type="text" {...register("expirationDate")} />
+          ) : (
+            <Input type="text" {...register("expirationDate")} />
+          )}
+          {errors?.expirationDate?.type === "required" && (
+            <TextField>{errors.expirationDate.message}</TextField>
+          )}
+          {errors?.expirationDate?.type === "matches" && (
+            <TextField>{errors.expirationDate.message}</TextField>
+          )}
         </Form>
-        <Form>
+
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Label>cvv</Label>
-          <Input type="text" />
+          {errors?.cvvNumber ? (
+            <InputError type="text" {...register("cvvNumber")} />
+          ) : (
+            <Input type="text" {...register("cvvNumber")} />
+          )}
+          {errors?.cvvNumber?.type === "required" && (
+            <TextField>{errors.cvvNumber.message}</TextField>
+          )}
+          {errors?.cvvNumber?.type === "matches" && (
+            <TextField>{errors.cvvNumber.message}</TextField>
+          )}
         </Form>
       </FormContainer>
     </CardDetails>

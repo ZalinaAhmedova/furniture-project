@@ -52,7 +52,7 @@ const ProductButton = styled.button`
 function GoodsCatalog() {
   const dispatch = useDispatch();
   
-  const handleClick = (product) => {
+  const addProductHandler = (product) => {
     dispatch(addCartItem(product));
   }
   
@@ -67,7 +67,7 @@ function GoodsCatalog() {
           <ProductPrice>{product.price}</ProductPrice>
           <ProductButtonContainer>
             <ProductButton
-              onClick={() => handleClick(product)}
+              onClick={() => addProductHandler(product)}
             >
               Add to cart
             </ProductButton>

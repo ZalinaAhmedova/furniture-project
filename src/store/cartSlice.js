@@ -20,12 +20,12 @@ const cartSlice = createSlice({
     },
     decrementCartItem(state, action) {
       const item = state.items.find((item) => item._id === action.payload);
-      item.quantity > 1 ? (item.quantity -= 1) : item.quantity;
+      item.quantity = item.quantity > 1 ? item.quantity - 1 : 1;
     },
     calculateTotal(state) {
-      let total = 0;
-      state.items.forEach((item) => (total += item.price * item.quantity));
-      state.totalCost = total;
+      state.totalCost = state.items.reduce(function (currentTotal, item) {
+        return currentTotal + item.price * item.quantity;
+      }, 0);
     },
   },
 });
