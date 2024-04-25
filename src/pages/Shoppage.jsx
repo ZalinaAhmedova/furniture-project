@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
 import Categories from "../components/Categories";
 import Filters from "../components/Filters";
 import Sorting from "../components/Sorting";
@@ -36,10 +37,16 @@ const ControllersWrapper = styled.div`
 `;
 
 function ShopPage() {
+  const [category, setCategory] = useState("All Categories");
+  const [subCategory, setSubCategory] = useState("");
+
   return (
     <ShopPageWrapper>
       <CategoriesWrapper>
-        <Categories />
+        <Categories
+          onClickCategory={(name) => setCategory(name)}
+          onClickSubCategory={(name) => setSubCategory(name)}
+        />
         <Filters />
       </CategoriesWrapper>
       <GoodsWrapper>
@@ -48,7 +55,10 @@ function ShopPage() {
           <Search />
           <ViewCatalogButton />
         </ControllersWrapper>
-        <GoodsCatalog />
+        <GoodsCatalog 
+        category={category} 
+        subCategory={subCategory}
+         />
       </GoodsWrapper>
     </ShopPageWrapper>
   );

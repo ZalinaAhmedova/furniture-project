@@ -4,7 +4,29 @@ import archibaldArmchair from "../images/products_img/poltrona-archibald-armchai
 import ricoDivanBoucle from "../images/products_img/rico-divan-boucle-ferm-living.jpg";
 import bibambola from "../images/products_img/bibambola.webp";
 import camaleondaModular from "../images/products_img/camaleonda-modular-sofa.webp";
-
+import hackneySofa from "../images/products_img/hackney-sofa-hay-harald.jpg";
+import capitalSofa from "../images/products_img/capitol-complex-sofa-cassina.jpg";
+import moncloudSofa from "../images/products_img/moncloud-sofa-cassina.jpg";
+import stamiLoveseat from "../images/products_img/stami-loveseat-gallotti-e-radice.jpg";
+import eamesPlasticChair from "../images/products_img/eames-plastic-vitra.jpg";
+import trePrezziArmchair from "../images/products_img/tre-pezzi-armchair-cassina.jpg";
+import marthaRockingArmchair from "../images/products_img/martha-rocking-poltrona-frau.jpg";
+import sanluceArmchair from "../images/products_img/sanluca-armchair-poltrona-frau.jpg";
+import littlePetraChair from "../images/products_img/little-petra-lounge-chair-tradition.jpg";
+import brasiliaOttoman from "../images/products_img/brasilia-ottoman-audo-copenhagen.jpg";
+import poufLittlePetra from "../images/products_img/pouf-little-petra-tradition.jpg";
+import poufHighPileVelvet from "../images/products_img/pof-high-pile-velvet.jpg";
+import eamesOttomanSantosPalisander from "../images/products_img/vitra-eames-ottoman-santos-palisander.jpg";
+import randomBookcase from "../images/products_img/random-bookcase-mdfitalia.jpg";
+import krossingMidiShelvingUnit from "../images/products_img/krossing-midi-shelving-unit-kriptonite.jpg";
+import randomitoWallBookcase from "../images/products_img/randomito-wal-bookcase-mdfitalia.jpg";
+import esuShelfBookcase from "../images/products_img/esu-shelf-vitra.jpg";
+import renFreestandingBookcase from "../images/products_img/ren-freestanding-bookcase.jpg";
+import atoRug from "../images/products_img/ato-sand-gallotti-e-radice.jpg";
+import juteRoundRug from "../images/products_img/jute-round-rug.jpg";
+import raagRugSquare from "../images/products_img/raag-rug-cctapis-square.jpg";
+import coloradoRug from "../images/products_img/colorado-rug-nanimarquina.jpg";
+import memoriaeRug from "../images/products_img/memoriae-rug-cc-tapis.jpg";
 
 
 const PRODUCTS = [
@@ -18,7 +40,6 @@ const PRODUCTS = [
         imgSrc: pacificArmchair,
         _id: "1",
         quantity: 1,
-
     },
     {
         name: "Chisel Lounge Chair",
@@ -30,7 +51,6 @@ const PRODUCTS = [
         imgSrc: chiselChair,
         _id: "2",
         quantity: 1,
-
     },
     {
         name: "Archibald Armchair",
@@ -42,7 +62,6 @@ const PRODUCTS = [
         imgSrc: archibaldArmchair,
         _id: "3",
         quantity: 1,
-
     },
     {
         name: "Rico Divan Boucle",
@@ -54,19 +73,17 @@ const PRODUCTS = [
         imgSrc: ricoDivanBoucle,
         _id: "4",
         quantity: 1,
-
     },
     {
         name: "Le Bambole - Bibambola Sofa",
         brand: "B&B Italia",
         price: 3311,
         description: "",
-        category: "Living Area",
+        category: "Dining Area",
         subCategory: "Sofas",
         imgSrc: bibambola,
         _id: "5",
         quantity: 1,
-
     },
     {
         name: "Camaleonda Modular Sofa",
@@ -78,7 +95,259 @@ const PRODUCTS = [
         imgSrc: camaleondaModular,
         _id: "6",
         quantity: 1,
-
+    },
+    {
+        name: "Hackney Seater Sofa",
+        brand: "Hay",
+        price: 5017,
+        description: "",
+        category: "Living Area",
+        subCategory: "Sofas",
+        imgSrc: hackneySofa,
+        _id: "7",
+        quantity: 1,
+    },
+    {
+        name: "Capitol Complex Sofa",
+        brand: "Cassina",
+        price: 3520,
+        description: "",
+        category: "Living Area",
+        subCategory: "Sofas",
+        imgSrc: capitalSofa,
+        _id: "8",
+        quantity: 1,
+    },
+    {
+        name: "Moncloud Sofa",
+        brand: "Cassina",
+        price: 6972,
+        description: "",
+        category: "Living Area",
+        subCategory: "Sofas",
+        imgSrc: moncloudSofa,
+        _id: "9",
+        quantity: 1,
+    },
+    {
+        name: "Stami Loveseat",
+        brand: "Galotti&Radice",
+        price: 3596,
+        description: "",
+        category: "Living Area",
+        subCategory: "Sofas",
+        imgSrc: stamiLoveseat,
+        _id: "10",
+        quantity: 1,
+    },
+    {
+        name: "Eames Plastic Chair",
+        brand: "Vitra",
+        price: 550,
+        description: "",
+        category: "Living Area",
+        subCategory: "Armchairs and Chaises Lounges",
+        imgSrc: eamesPlasticChair,
+        _id: "11",
+        quantity: 1,
+    },
+    {
+        name: "Tre Prezzi Armchair",
+        brand: "Cassina",
+        price: 2442,
+        description: "",
+        category: "Living Area",
+        subCategory: "Armchairs and Chaises Lounges",
+        imgSrc: trePrezziArmchair,
+        _id: "12",
+        quantity: 1,
+    },
+    {
+        name: "Martha Rocking Armchair",
+        brand: "Poltrona Frau",
+        price: 2906,
+        description: "",
+        category: "Living Area",
+        subCategory: "Armchairs and Chaises Lounges",
+        imgSrc: marthaRockingArmchair,
+        _id: "13",
+        quantity: 1,
+    },
+    {
+        name: "Sanluca Armchair",
+        brand: "Poltrona Frau",
+        price: 3415,
+        description: "",
+        category: "Living Area",
+        subCategory: "Armchairs and Chaises Lounges",
+        imgSrc: sanluceArmchair,
+        _id: "14",
+        quantity: 1,
+    },
+    {
+        name: "Little Petra Lounge Chair",
+        brand: "&Tradition",
+        price: 4472,
+        description: "",
+        category: "Living Area",
+        subCategory: "Armchairs and Chaises Lounges",
+        imgSrc: littlePetraChair,
+        _id: "15",
+        quantity: 1,
+    },
+    {
+        name: "Brasilia Ottoman",
+        brand: "Audo Copenhagen",
+        price: 645,
+        description: "",
+        category: "Living Area",
+        subCategory: "Poufs and Ottomans",
+        imgSrc: brasiliaOttoman,
+        _id: "16",
+        quantity: 1,
+    },
+    {
+        name: "Pouf Little Petra",
+        brand: "&Tradition",
+        price: 1270,
+        description: "",
+        category: "Living Area",
+        subCategory: "Poufs and Ottomans",
+        imgSrc: poufLittlePetra,
+        _id: "17",
+        quantity: 1,
+    },
+    {
+        name: "Pouf High Pile Velvet",
+        brand: "Ferm Living",
+        price: 592,
+        description: "",
+        category: "Living Area",
+        subCategory: "Poufs and Ottomans",
+        imgSrc: poufHighPileVelvet,
+        _id: "18",
+        quantity: 1,
+    },
+    {
+        name: "Eames Ottoman Santos Palisander",
+        brand: "Ferm Living",
+        price: 645,
+        description: "",
+        category: "Living Area",
+        subCategory: "Poufs and Ottomans",
+        imgSrc: eamesOttomanSantosPalisander,
+        _id: "19",
+        quantity: 1,
+    },
+    {
+        name: "Random Bookcase",
+        brand: "MDF Italia",
+        price: 2241,
+        description: "",
+        category: "Living Area",
+        subCategory: "Bookshelves",
+        imgSrc: randomBookcase,
+        _id: "20",
+        quantity: 1,
+    },
+    {
+        name: "Krossing Midi Shelving Unit",
+        brand: "Kriptonite",
+        price: 732,
+        description: "",
+        category: "Living Area",
+        subCategory: "Bookshelves",
+        imgSrc: krossingMidiShelvingUnit,
+        _id: "21",
+        quantity: 1,
+    },
+    {
+        name: "Randomito Wall Bookcase",
+        brand: "MDF Italia",
+        price: 717,
+        description: "",
+        category: "Living Area",
+        subCategory: "Bookshelves",
+        imgSrc: randomitoWallBookcase,
+        _id: "22",
+        quantity: 1,
+    },
+    {
+        name: "ESU Shelf Bookcase",
+        brand: "Vitra",
+        price: 2212,
+        description: "",
+        category: "Living Area",
+        subCategory: "Bookshelves",
+        imgSrc: esuShelfBookcase,
+        _id: "23",
+        quantity: 1,
+    },
+    {
+        name: "Ren Freestanding Bookcase",
+        brand: "Poltrona Frau",
+        price: 1013,
+        description: "",
+        category: "Living Area",
+        subCategory: "Bookshelves",
+        imgSrc: renFreestandingBookcase,
+        _id: "24",
+        quantity: 1,
+    },
+    {
+        name: "Ato Rug",
+        brand: "Galotti&Radice",
+        price: 732,
+        description: "",
+        category: "Living Area",
+        subCategory: "Rugs",
+        imgSrc: atoRug,
+        _id: "25",
+        quantity: 1,
+    },
+    {
+        name: "Jute Round World Rug",
+        brand: "Ferm Living",
+        price: 34,
+        description: "",
+        category: "Living Area",
+        subCategory: "Rugs",
+        imgSrc: juteRoundRug,
+        _id: "26",
+        quantity: 1,
+    },
+    {
+        name: "Raag Rug Square",
+        brand: "cc-tapis",
+        price: 459,
+        description: "",
+        category: "Living Area",
+        subCategory: "Rugs",
+        imgSrc: raagRugSquare,
+        _id: "27",
+        quantity: 1,
+    },
+    {
+        name: "Colorado Rug",
+        brand: "Nanimarquina",
+        price: 4636,
+        description: "",
+        category: "Living Area",
+        subCategory: "Rugs",
+        imgSrc: coloradoRug,
+        _id: "28",
+        quantity: 1,
+    },
+    {
+        name: "Memoriae Rug",
+        brand: "cc-tapis",
+        price: 357,
+        description: "",
+        category: "Living Area",
+        subCategory: "Rugs",
+        imgSrc: memoriaeRug,
+        _id: "29",
+        quantity: 1,
     },
 ]
 

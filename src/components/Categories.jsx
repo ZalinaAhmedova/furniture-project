@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import CATEGORIES_DATA from "../data/categoriesData";
 
-const CategoriesWrapper = styled.ul`
-`;
+const CategoriesWrapper = styled.ul``;
 
 const CategoriesTitle = styled.h2`
   margin-bottom: 15px;
@@ -18,55 +18,54 @@ const Subcategories = styled.ul`
 `;
 
 const CategoriesItem = styled.li`
+  padding-top: 15px;
+  cursor: pointer;
+`;
+
+const CategoriesItemText = styled.p`
   font-size: var(--fs-sm);
-  padding-top: 20px;
   font-weight: var(--medium);
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const SubcategoriesItem = styled.li`
   padding-left: 10px;
   font-size: var(--fs-sm);
-  padding-top: 10px;
   padding-left: 10px;
+  padding-top: 10px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
-function Categories() {
+function Categories({ onClickCategory, onClickSubCategory }) {
   return (
     <CategoriesWrapper>
       <CategoriesTitle>Categories</CategoriesTitle>
-      <CategoriesItem>All Categories</CategoriesItem>
-      <CategoriesItem>
-        Living Area
-        <Subcategories>
-          <SubcategoriesItem>Sofas</SubcategoriesItem>
-          <SubcategoriesItem>Armchairs and Chaises Lounges</SubcategoriesItem>
-          <SubcategoriesItem>Poufs and Ottomans</SubcategoriesItem>
-          <SubcategoriesItem>Bookshelves</SubcategoriesItem>
-          <SubcategoriesItem>Rugs</SubcategoriesItem>
-        </Subcategories>
-      </CategoriesItem>
-      <CategoriesItem>
-        Dining Area
-        <Subcategories>
-          <SubcategoriesItem>Tables</SubcategoriesItem>
-          <SubcategoriesItem>Chairs</SubcategoriesItem>
-        </Subcategories>
-      </CategoriesItem>
-      <CategoriesItem>
-        Hallway
-        <Subcategories>
-          <SubcategoriesItem>Coat Racks</SubcategoriesItem>
-          <SubcategoriesItem>Mirrors</SubcategoriesItem>
-        </Subcategories>
-      </CategoriesItem>
-      <CategoriesItem>
-        Night Area
-        <Subcategories>
-          <SubcategoriesItem>Beds</SubcategoriesItem>
-          <SubcategoriesItem>Wardrobes</SubcategoriesItem>
-          <SubcategoriesItem>Dressing Tables</SubcategoriesItem>
-        </Subcategories>
-      </CategoriesItem>
+      {CATEGORIES_DATA.map((category, idx) => (
+        <CategoriesItem key={idx}>
+          <CategoriesItemText
+            onClick={() => onClickCategory(category.categoryName)}
+          >
+            {category.categoryName}
+          </CategoriesItemText>
+          <Subcategories>
+            {category.subCategory.map((subCat, ind) => (
+              <SubcategoriesItem
+                key={ind}
+                onClick={() => onClickSubCategory(subCat)}
+              >
+                {subCat}
+              </SubcategoriesItem>
+            ))}
+          </Subcategories>
+        </CategoriesItem>
+      ))}
     </CategoriesWrapper>
   );
 }

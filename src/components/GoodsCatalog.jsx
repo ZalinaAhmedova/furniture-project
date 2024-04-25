@@ -47,18 +47,31 @@ const ProductButton = styled.button`
   padding: 5px 10px;
   margin-top: 5px;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
 `;
 
-function GoodsCatalog() {
+function GoodsCatalog({ category, subCategory }) {
   const dispatch = useDispatch();
-  
+
   const addProductHandler = (product) => {
     dispatch(addCartItem(product));
-  }
-  
+  };
+
+  const products =
+    category === "All Categories"
+      ? PRODUCTS
+      : PRODUCTS.filter((cat) => cat.subCategory === subCategory);
+
   return (
     <GoodsCatalogContainer>
-      {PRODUCTS.map((product) => (
+      {products.map((product) => (
         <GoodsCatalogItem key={product._id}>
           <img width="200" height="150" src={product.imgSrc} />
           <ProductBrand>{product.brand}</ProductBrand>
@@ -66,9 +79,7 @@ function GoodsCatalog() {
           <ProductPriceValue>US$ </ProductPriceValue>
           <ProductPrice>{product.price}</ProductPrice>
           <ProductButtonContainer>
-            <ProductButton
-              onClick={() => addProductHandler(product)}
-            >
+            <ProductButton onClick={() => addProductHandler(product)}>
               Add to cart
             </ProductButton>
           </ProductButtonContainer>
