@@ -19,15 +19,19 @@ const ButtonImg = styled.img`
   margin: 0 auto;
 `;
 
-function ViewCatalogButton() {
+function ViewCatalogButton({ viewMode, onClickButton }) {
+
   return (
     <>
-      {/* <Button>
-          <img height="17px" src={viewImg2} />
-        </Button> */}
-      <Button>
-        <ButtonImg src={viewImg1} />
-      </Button>
+      {viewMode ? (
+        <Button onClick={onClickButton}>
+          <ButtonImg src={viewImg2} />
+        </Button>
+      ) : (
+        <Button onClick={onClickButton}>
+          <ButtonImg src={viewImg1} />
+        </Button>
+      )}
     </>
   );
 }

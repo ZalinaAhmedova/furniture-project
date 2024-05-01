@@ -39,6 +39,16 @@ const ControllersWrapper = styled.div`
 function ShopPage() {
   const [category, setCategory] = useState("All Categories");
   const [subCategory, setSubCategory] = useState("");
+  const [isViewModeClicked, setIsViewModeClicked] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleClickViewButton = () => {
+    setIsViewModeClicked(!isViewModeClicked);
+  };
+
+  const handleChangeSearchValue = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   return (
     <ShopPageWrapper>
@@ -52,13 +62,27 @@ function ShopPage() {
       <GoodsWrapper>
         <ControllersWrapper>
           <Sorting />
-          <Search />
-          <ViewCatalogButton />
+          <Search searchValue={searchValue} onChangeSearchValue={handleChangeSearchValue}/>
+          <ViewCatalogButton
+            viewMode={isViewModeClicked}
+            onClickButton={() => handleClickViewButton()}
+          />
         </ControllersWrapper>
-        <GoodsCatalog 
-        category={category} 
-        subCategory={subCategory}
-         />
+        {isViewModeClicked ? (
+          <GoodsCatalog
+            category={category}
+            subCategory={subCategory}
+            viewMode="list"
+            searchCatalogValue={searchValue}
+          />
+        ) : (
+          <GoodsCatalog
+            category={category}
+            subCategory={subCategory}
+            viewMode="tile"
+            searchCatalogValue={searchValue}
+          />
+        )}
       </GoodsWrapper>
     </ShopPageWrapper>
   );

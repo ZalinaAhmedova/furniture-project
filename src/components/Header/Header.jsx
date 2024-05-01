@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import cart from "../images/cart.png";
+import { useSelector } from "react-redux";
+import cart from "../../images/cart.png";
 
 const HeaderStyled = styled.header`
   width: 100%;
@@ -43,6 +44,8 @@ const NavItem = styled(Link)`
 `;
 
 const CartStyled = styled(Link)`
+  display: flex;
+  gap: 15px;
   margin: 30px 0;
   color: var(--white);
   text-decoration: none;
@@ -52,7 +55,18 @@ const CartImg = styled.img`
   display: block;
 `;
 
+const CartQuantity = styled.span`
+  align-self: center;
+  color: var(--white);
+  font-size: var(--fs-md);
+`;
+
 function Header() {
+  const cartItems = useSelector((state) => state.cart.items);
+  const cartQuantity = cartItems.reduce(function (current, item) {
+    return current + item.quantity;
+  }, 0);
+
   return (
     <HeaderStyled>
       <HeaderContainer>
@@ -63,6 +77,7 @@ function Header() {
         </Nav>
         <CartStyled to="/shoppingcart">
           <CartImg width="24px" height="27px" src={cart} alt="Shopping Cart" />
+          <CartQuantity>{`Cart: ${cartQuantity}`}</CartQuantity>
         </CartStyled>
       </HeaderContainer>
     </HeaderStyled>

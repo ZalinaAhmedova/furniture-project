@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const SearchContainer = styled.div`
-`;
+const SearchContainer = styled.div``;
 
 const SearchInput = styled.input`
   position: relative;
   width: 200px;
   height: 35px;
   padding-left: 30px;
+  padding-right: 5px;
   font-size: var(--fs-sm);
   border: none;
   border-radius: 3px;
@@ -24,13 +24,20 @@ const SearchIcon = styled.span`
   margin-left: 7px;
 `;
 
-function Search() {
+function Search({ searchValue, onChangeSearchValue }) {
+
   return (
     <SearchContainer>
       <SearchIcon>
         <i className="fa fa-search" />
       </SearchIcon>
-      <SearchInput type="search" id="search" placeholder="Search..." />
+      <SearchInput
+        value={searchValue}
+        onChange={onChangeSearchValue}
+        type="search"
+        id="search"
+        placeholder="Search..."
+      />
     </SearchContainer>
   );
 }
