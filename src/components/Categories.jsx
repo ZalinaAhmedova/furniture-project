@@ -43,7 +43,7 @@ const SubcategoriesItem = styled.li`
   }
 `;
 
-function Categories({ onClickCategory, onClickSubCategory }) {
+function Categories({ onClickCategory }) {
   return (
     <CategoriesWrapper>
       <CategoriesTitle>Categories</CategoriesTitle>
@@ -55,12 +55,12 @@ function Categories({ onClickCategory, onClickSubCategory }) {
             {category.categoryName}
           </CategoriesItemText>
           <Subcategories>
-            {category.subCategory.map((subCat, ind) => (
+            {category.subCategory.map((subCategory, ind) => (
               <SubcategoriesItem
                 key={ind}
-                onClick={() => onClickSubCategory(subCat)}
+                onClick={() => onClickCategory(subCategory)}
               >
-                {subCat}
+                {subCategory}
               </SubcategoriesItem>
             ))}
           </Subcategories>

@@ -5,6 +5,7 @@ const cartSlice = createSlice({
   initialState: {
     items: [],
     totalCost: 0,
+    quantityTotal: 0,
   },
   reducers: {
     addCartItem(state, action) {
@@ -27,6 +28,11 @@ const cartSlice = createSlice({
         return currentTotal + item.price * item.quantity;
       }, 0);
     },
+    calculateQuantityItems(state) {
+      state.quantityTotal = state.items.reduce(function (current, item) {
+        return current + item.quantity;
+      }, 0);
+    },
   },
 });
 
@@ -36,6 +42,7 @@ export const {
   incrementCartItem,
   decrementCartItem,
   calculateTotal,
+  calculateQuantityItems,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

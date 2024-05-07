@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { calculateTotal } from "../store/cartSlice";
+import { calculateTotal } from "../../../store/cartSlice";
 import Delivery from "./Delivery";
 import Card from "./Card";
-import arrow2 from "../images/arrow2.png";
+import arrow2 from "../../../images/arrow2.png";
 
 const DeliveryCardSectionStyled = styled.div`
   width: calc(100% - 130px * 2);

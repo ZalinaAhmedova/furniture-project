@@ -24,7 +24,7 @@ const SearchIcon = styled.span`
   margin-left: 7px;
 `;
 
-function Search({ searchValue, onChangeSearchValue }) {
+function Search({ value, onChange }) {
 
   return (
     <SearchContainer>
@@ -32,8 +32,8 @@ function Search({ searchValue, onChangeSearchValue }) {
         <i className="fa fa-search" />
       </SearchIcon>
       <SearchInput
-        value={searchValue}
-        onChange={onChangeSearchValue}
+        value={value}
+        onChange={onChange}
         type="search"
         id="search"
         placeholder="Search..."

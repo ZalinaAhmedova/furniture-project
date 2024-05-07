@@ -1,89 +1,23 @@
-import React from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementCartItem } from "../store/cartSlice";
 import { addCartItem } from "../store/cartSlice";
+import GoodsCatalogItem from "./GoodsCatalogItem";
 import { PRODUCTS } from "../data/productsData";
 
-const GoodsCatalogContainerTile = styled.div`
+const GoodsCatalogContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  padding: 10px;
+  grid-template-columns: ${(props) =>
+    props.isTileView ? "repeat(auto-fill, minmax(250px, 1fr))" : "none"};
+  grid-template-rows: ${(props) =>
+    props.isListView ? "repeat(auto-fill, minmax(150px, 1fr))" : "none"};
+  padding: ${(props) => (props.isTileView ? "10px" : "0")};
 `;
 
-const GoodsCatalogContainerList = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
-`;
-
-const GoodsCatalogItemTile = styled.div`
-  padding: 10px;
-`;
-
-const GoodsCatalogItemList = styled.div`
-  display: flex;
-  padding: 10px;
-  border-bottom: 1px var(--bg-gray) solid;
-`;
-
-const ProductNameListView = styled.div`
-  margin-top: 15px;
-`;
-
-const ProductPriceButtonListView = styled.div`
-  margin-left: auto;
-  margin-top: auto;
-  display: flex;
-`;
-
-const ProductBrand = styled.p`
-  font-size: var(--fs-xs);
-  margin-bottom: 5px;
-`;
-
-const ProductName = styled.p`
-  font-size: var(--fs-sm);
-  font-weight: var(--semi-bold);
-  margin-bottom: 5px;
-`;
-
-const ProductPriceValue = styled.span`
-  margin-top: ${(props) => (props.isViewList ? "auto" : "0")};
-  font-size: var(--fs-md);
-  font-weight: bold;
-`;
-
-const ProductPrice = styled.span`
-  margin-top: ${(props) => (props.isViewList ? "auto" : "0")};
-  font-size: var(--fs-md);
-  font-weight: bold;
-`;
-
-const ProductButtonContainer = styled.div``;
-
-const ProductButton = styled.button`
-  border: none;
-  border-radius: 3px;
-  background-color: var(--bg-green);
-  color: var(--white);
-  font-size: var(--fs-sm);
-  padding: 5px 10px;
-  margin-left: ${(props) => (props.isViewList ? "15px" : "0")};
-  margin-top: 5px;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:active {
-    opacity: 0.7;
-  }
-`;
-
-function GoodsCatalog({ category, subCategory, viewMode, searchCatalogValue }) {
+function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
+  const [addedId, setAddedId] = useState([]);
   const cartItems = useSelector((state) => state.cart.items);
 
   const dispatch = useDispatch();
@@ -101,79 +35,67 @@ function GoodsCatalog({ category, subCategory, viewMode, searchCatalogValue }) {
       }
     });
     !isCartIncludesItem && dispatch(addCartItem(product));
+    setAddedId(productId);
   };
 
-  const products =
-    category === "All Categories"
-      ? PRODUCTS
-      : PRODUCTS.filter((cat) => cat.subCategory === subCategory);
+  const [filteredProducts, setFilteredProducts] = useState(PRODUCTS);
+
+  const filter = () => {
+    setFilteredProducts(
+      category === "All Categories"
+        ? PRODUCTS
+        : PRODUCTS.filter(
+            (product) =>
+              product.category === category || product.subCategory === category
+          )
+    );
+  };
+
+  const search = () => {
+    setFilteredProducts(
+      PRODUCTS.filter((product) => {
+        const fullProductName = (product.name + product.brand).toLowerCase();
+        return searchCatalogValue
+          ? fullProductName.includes(searchCatalogValue.toLowerCase())
+          : product;
+      })
+    );
+  };
+
+  useEffect(() => {
+    filter();
+  }, [category]);
+
+  useEffect(() => {
+    search();
+  }, [searchCatalogValue]);
+
+  // useEffect(() => {
+  //   setFilteredProducts(
+  //     PRODUCTS.filter((product) => {
+  //       const fullProductName = (product.name + product.brand).toLowerCase();
+  //       return searchCatalogValue
+  //         ? fullProductName.includes(searchCatalogValue.toLowerCase())
+  //         : product;
+  //     })
+  //   );
+  // }, [searchCatalogValue]);
 
   return (
-    <>
-      {viewMode === "tile" && (
-        <GoodsCatalogContainerTile>
-          {products
-            .filter((product) => {
-              const fullProductName = (
-                product.name + product.brand
-              ).toLowerCase();
-              return searchCatalogValue
-                ? fullProductName.includes(searchCatalogValue.toLowerCase())
-                : product;
-            })
-            .map((product) => (
-              <GoodsCatalogItemTile key={product._id}>
-                <img width="200" height="150" src={product.imgSrc} />
-                <ProductBrand>{product.brand}</ProductBrand>
-                <ProductName>{product.name}</ProductName>
-                <ProductPriceValue>US$ </ProductPriceValue>
-                <ProductPrice>{product.price}</ProductPrice>
-                <ProductButtonContainer>
-                  <ProductButton
-                    onClick={() => addProductHandler(product, product._id)}
-                  >
-                    Add to cart
-                  </ProductButton>
-                </ProductButtonContainer>
-              </GoodsCatalogItemTile>
-            ))}
-        </GoodsCatalogContainerTile>
-      )}
-      {viewMode === "list" && (
-        <GoodsCatalogContainerList>
-          {products
-            .filter((product) => {
-              const fullProductName = (
-                product.name + product.brand
-              ).toLowerCase();
-              return searchCatalogValue
-                ? fullProductName.includes(searchCatalogValue.toLowerCase())
-                : product;
-            })
-            .map((product) => (
-              <GoodsCatalogItemList key={product._id}>
-                <img width="200" height="150" src={product.imgSrc} />
-                <ProductNameListView>
-                  <ProductBrand>{product.brand}</ProductBrand>
-                  <ProductName>{product.name}</ProductName>
-                </ProductNameListView>
-                <ProductPriceButtonListView>
-                  <ProductPriceValue isViewList>US$ </ProductPriceValue>
-                  <ProductPrice isViewList>{product.price}</ProductPrice>
-                  <ProductButtonContainer>
-                    <ProductButton
-                      isViewList
-                      onClick={() => addProductHandler(product, product._id)}
-                    >
-                      Add to cart
-                    </ProductButton>
-                  </ProductButtonContainer>
-                </ProductPriceButtonListView>
-              </GoodsCatalogItemList>
-            ))}
-        </GoodsCatalogContainerList>
-      )}
-    </>
+    <GoodsCatalogContainer
+      isTileView={viewMode === "tile"}
+      isListView={viewMode === "list"}
+    >
+      {filteredProducts.map((product) => (
+        <GoodsCatalogItem
+          isAdded={addedId === product._id}
+          key={product._id}
+          item={product}
+          isListView={viewMode === "list"}
+          onClickButton={() => addProductHandler(product, product._id)}
+        />
+      ))}
+    </GoodsCatalogContainer>
   );
 }
 

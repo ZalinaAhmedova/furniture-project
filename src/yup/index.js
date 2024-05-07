@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const CardSchema = yup.object({
+export const FormSchema = yup.object({
   nameOnCard: yup
     .string()
     .required("This field is required")
@@ -17,9 +17,6 @@ export const CardSchema = yup.object({
     .string()
     .required("This field is required")
     .matches(/[0-9]{3}$/, "Invalid CVV number"),
-});
-
-export const DeliverySchema = yup.object().shape({
   firstName: yup
     .string()
     .required("This field is required")

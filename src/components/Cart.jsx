@@ -26,17 +26,15 @@ const CartList = styled.div`
 `;
 
 function Cart() {
+  const cartQuantity = useSelector((state) => state.cart.quantityTotal);
   const cartItems = useSelector((state) => state.cart.items);
-  const itemsQuantity = cartItems.reduce(function (current, item) {
-    return current + item.quantity;
-  }, 0);
 
   return (
     <CartSection>
       <CartTitle>Shopping Cart</CartTitle>
       <CartText>
-        You have {itemsQuantity}{" "}
-        {`${itemsQuantity > 1 ? "items" : "item"}`} in your cart
+        You have {cartQuantity}{" "}
+        {`${cartQuantity > 1 ? "items" : "item"}`} in your cart
       </CartText>
       <CartList>
         {cartItems.map((product) => (
