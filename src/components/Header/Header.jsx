@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { calculateQuantityItems } from "../../store/cartSlice";
+import { itemsQuantity } from "../../store/cartSlice";
 import cart from "../../images/cart.png";
 
 const HeaderStyled = styled.header`
@@ -68,7 +68,7 @@ function Header() {
   const cartQuantity = useSelector((state) => state.cart.quantityTotal);
 
   useEffect(() => {
-    dispatch(calculateQuantityItems());
+    dispatch(itemsQuantity());
   }, [cartItems]);
 
   return (

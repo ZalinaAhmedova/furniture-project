@@ -17,8 +17,10 @@ const GoodsCatalogContainer = styled.div`
 `;
 
 function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
-  const [addedId, setAddedId] = useState([]);
   const cartItems = useSelector((state) => state.cart.items);
+  const [data, setData] = useState(PRODUCTS);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [addedIds, setAddedIds] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -26,60 +28,39 @@ function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
     dispatch(incrementCartItem(_id));
   };
 
-  const addProductHandler = (product, productId) => {
+  const addProductHandler = (product) => {
     let isCartIncludesItem = false;
     cartItems.forEach((item) => {
       if (item._id === product._id) {
         isCartIncludesItem = true;
-        handleIncrementButton(productId);
+        handleIncrementButton(product._id);
       }
     });
     !isCartIncludesItem && dispatch(addCartItem(product));
-    setAddedId(productId);
+    setAddedIds((prev) => [...prev, product._id]);
   };
 
-  const [filteredProducts, setFilteredProducts] = useState(PRODUCTS);
-
-  const filter = () => {
-    setFilteredProducts(
-      category === "All Categories"
-        ? PRODUCTS
-        : PRODUCTS.filter(
-            (product) =>
-              product.category === category || product.subCategory === category
-          )
-    );
-  };
-
-  const search = () => {
-    setFilteredProducts(
-      PRODUCTS.filter((product) => {
-        const fullProductName = (product.name + product.brand).toLowerCase();
-        return searchCatalogValue
-          ? fullProductName.includes(searchCatalogValue.toLowerCase())
-          : product;
-      })
-    );
+  const handleSortAndFilteredData = (category, searchCatalogValue) => {
+    return data.filter((product) => {
+      const fullProductName = (product.name + product.brand).toLowerCase();
+      return (
+        fullProductName.includes(searchCatalogValue.toLowerCase()) &&
+        (category !== "All Categories"
+          ? product.category === category || product.subCategory === category
+          : true)
+      );
+    });
   };
 
   useEffect(() => {
-    filter();
-  }, [category]);
+    const data = PRODUCTS;
+    setData(data);
+  }, [PRODUCTS]);
 
   useEffect(() => {
-    search();
-  }, [searchCatalogValue]);
-
-  // useEffect(() => {
-  //   setFilteredProducts(
-  //     PRODUCTS.filter((product) => {
-  //       const fullProductName = (product.name + product.brand).toLowerCase();
-  //       return searchCatalogValue
-  //         ? fullProductName.includes(searchCatalogValue.toLowerCase())
-  //         : product;
-  //     })
-  //   );
-  // }, [searchCatalogValue]);
+    const data = handleSortAndFilteredData(category, searchCatalogValue);
+    setFilteredProducts(data);
+  }, [category, searchCatalogValue, data]);
 
   return (
     <GoodsCatalogContainer
@@ -88,11 +69,11 @@ function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
     >
       {filteredProducts.map((product) => (
         <GoodsCatalogItem
-          isAdded={addedId === product._id}
+          isAdded={addedIds.includes(product._id)}
           key={product._id}
           item={product}
           isListView={viewMode === "list"}
-          onClickButton={() => addProductHandler(product, product._id)}
+          onClickButton={() => addProductHandler(product)}
         />
       ))}
     </GoodsCatalogContainer>

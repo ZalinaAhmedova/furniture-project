@@ -65,8 +65,8 @@ function ShopPage() {
             onChange={handleChangeSearchValue}
           />
           <ViewCatalogButton
-            viewMode={isViewMode}
-            onClickButton={() => handleClickViewButton()}
+            isViewMode={isViewMode}
+            onClick={() => handleClickViewButton()}
           />
         </ControllersWrapper>
         <GoodsCatalog

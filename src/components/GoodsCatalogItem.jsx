@@ -48,10 +48,11 @@ const ProductButton = styled.button`
   color: var(--white);
   font-size: var(--fs-sm);
   padding: 5px 10px;
+  margin-right: 5px;
   margin-left: ${(props) => (props.isListView ? "15px" : "0")};
   margin-top: ${(props) => (props.isListView ? "125px" : "5px")};
   height: 30px;
-  width: 100px;
+  min-width: 60px;
   cursor: pointer;
 
   &:hover {
@@ -75,6 +76,7 @@ function GoodsCatalogItem({ item, onClickButton, isListView, isAdded }) {
         <ProductPriceValue isListView={isListView}>US$ </ProductPriceValue>
         <ProductPrice isListView={isListView}>{item.price}</ProductPrice>
       </ProductPriceButtonContainer>
+      {isAdded && <ProductButton>-1</ProductButton>}
       <ProductButton
         isListView={isListView}
         onClick={() => onClickButton(item, item._id)}

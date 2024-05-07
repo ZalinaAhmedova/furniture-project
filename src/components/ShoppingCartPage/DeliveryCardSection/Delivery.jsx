@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormSchema } from "../../../yup";
-import Input from "./Input";
+import Input from "../../Input";
 
 const DeliveryDetails = styled.div`
   margin: 0 auto;
