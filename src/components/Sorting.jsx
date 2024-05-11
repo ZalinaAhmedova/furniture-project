@@ -18,14 +18,36 @@ const SortingSelect = styled.select`
 `;
 
 function Sorting() {
+  const sortList = [
+    {
+      name: "Popular",
+      sortProperty: "popular",
+    },
+    {
+      name: "Highest Price",
+      sortProperty: "highest price",
+    },
+    {
+      name: "Lowest Price",
+      sortProperty: "lowest price",
+    },
+    {
+      name: "New",
+      sortProperty: "new",
+    },
+    {
+      name: "Name",
+      sortProperty: "name",
+    },
+  ];
+
   return (
     <SortingContainer>
       <SortingTitle>SORT BY</SortingTitle>
       <SortingSelect>
-        <option>Popular</option>
-        <option>Price</option>
-        <option>News</option>
-        <option>Product Name</option>
+        {sortList.map((item, idx) => (
+          <option key={idx} onChange>{item.name}</option>
+        ))}
       </SortingSelect>
     </SortingContainer>
   );

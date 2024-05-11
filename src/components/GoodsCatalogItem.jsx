@@ -64,7 +64,13 @@ const ProductButton = styled.button`
   }
 `;
 
-function GoodsCatalogItem({ item, onClickButton, isListView, isAdded }) {
+function GoodsCatalogItem({
+  item,
+  onClickAddButton,
+  onClickDecreaseButton,
+  isListView,
+  isAdded,
+}) {
   return (
     <GoodsCatalogItemWrapper key={item._id} isListView={isListView}>
       <img width="200" height="150" src={item.imgSrc} />
@@ -76,10 +82,14 @@ function GoodsCatalogItem({ item, onClickButton, isListView, isAdded }) {
         <ProductPriceValue isListView={isListView}>US$ </ProductPriceValue>
         <ProductPrice isListView={isListView}>{item.price}</ProductPrice>
       </ProductPriceButtonContainer>
-      {isAdded && <ProductButton>-1</ProductButton>}
+      {isAdded && (
+        <ProductButton onClick={() => onClickDecreaseButton(item)}>
+          -1
+        </ProductButton>
+      )}
       <ProductButton
         isListView={isListView}
-        onClick={() => onClickButton(item, item._id)}
+        onClick={() => onClickAddButton(item)}
       >
         {isAdded ? `+1` : `Add to cart`}
       </ProductButton>

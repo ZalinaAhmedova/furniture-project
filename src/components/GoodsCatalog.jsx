@@ -1,7 +1,11 @@
 import React, { useMemo, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { incrementCartItem } from "../store/cartSlice";
+import {
+  removeCartItem,
+  decrementCartItem,
+  incrementCartItem,
+} from "../store/cartSlice";
 import { addCartItem } from "../store/cartSlice";
 import GoodsCatalogItem from "./GoodsCatalogItem";
 import { PRODUCTS } from "../data/productsData";
@@ -18,9 +22,8 @@ const GoodsCatalogContainer = styled.div`
 
 function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
   const cartItems = useSelector((state) => state.cart.items);
-  const [data, setData] = useState(PRODUCTS);
+  const data = PRODUCTS;
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [addedIds, setAddedIds] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -28,19 +31,45 @@ function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
     dispatch(incrementCartItem(_id));
   };
 
-  const addProductHandler = (product) => {
-    let isCartIncludesItem = false;
-    cartItems.forEach((item) => {
-      if (item._id === product._id) {
-        isCartIncludesItem = true;
-        handleIncrementButton(product._id);
-      }
-    });
-    !isCartIncludesItem && dispatch(addCartItem(product));
-    setAddedIds((prev) => [...prev, product._id]);
+  const handleDecrementButton = (_id) => {
+    dispatch(decrementCartItem(_id));
   };
 
-  const handleSortAndFilteredData = (category, searchCatalogValue) => {
+  const handleRemoveItem = (_id) => {
+    dispatch(removeCartItem(_id));
+  };
+
+  const checkPresenceInCart = (id) => {
+    let checkId = false;
+    cartItems.forEach((item) => {
+      if (item._id === id) checkId = true;
+    });
+    return checkId;
+  };
+
+  const checkQuantityInCart = (id) => {
+    let checkQuantity = false;
+    cartItems.forEach((item) => {
+      if (item._id === id && item.quantity === 1) checkQuantity = true;
+    });
+    return checkQuantity;
+  };
+
+  const addProductHandler = (product) => {
+    if (checkPresenceInCart(product._id)) {
+      handleIncrementButton(product._id);
+    }
+    !checkPresenceInCart(product._id) && dispatch(addCartItem(product));
+  };
+
+  const decreaseProductHandler = (product) => {
+    if (checkQuantityInCart(product._id)) {
+      handleRemoveItem(product._id);
+    }
+    !checkQuantityInCart(product._id) && handleDecrementButton(product._id);
+  };
+
+  const sortingAndFilteringData = (category, searchCatalogValue) => {
     return data.filter((product) => {
       const fullProductName = (product.name + product.brand).toLowerCase();
       return (
@@ -53,13 +82,8 @@ function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
   };
 
   useEffect(() => {
-    const data = PRODUCTS;
-    setData(data);
-  }, [PRODUCTS]);
-
-  useEffect(() => {
-    const data = handleSortAndFilteredData(category, searchCatalogValue);
-    setFilteredProducts(data);
+    const filteredData = sortingAndFilteringData(category, searchCatalogValue);
+    setFilteredProducts(filteredData);
   }, [category, searchCatalogValue, data]);
 
   return (
@@ -69,11 +93,12 @@ function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
     >
       {filteredProducts.map((product) => (
         <GoodsCatalogItem
-          isAdded={addedIds.includes(product._id)}
+          isAdded={checkPresenceInCart(product._id)}
           key={product._id}
           item={product}
           isListView={viewMode === "list"}
-          onClickButton={() => addProductHandler(product)}
+          onClickAddButton={() => addProductHandler(product)}
+          onClickDecreaseButton={() => decreaseProductHandler(product)}
         />
       ))}
     </GoodsCatalogContainer>
