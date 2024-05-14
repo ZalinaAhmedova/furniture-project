@@ -58,15 +58,17 @@ function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
   const addProductHandler = (product) => {
     if (checkPresenceInCart(product._id)) {
       handleIncrementButton(product._id);
+    } else {
+      dispatch(addCartItem(product));
     }
-    !checkPresenceInCart(product._id) && dispatch(addCartItem(product));
   };
 
   const decreaseProductHandler = (product) => {
     if (checkQuantityInCart(product._id)) {
       handleRemoveItem(product._id);
+    } else {
+      handleDecrementButton(product._id);
     }
-    !checkQuantityInCart(product._id) && handleDecrementButton(product._id);
   };
 
   const sortingAndFilteringData = (category, searchCatalogValue) => {
