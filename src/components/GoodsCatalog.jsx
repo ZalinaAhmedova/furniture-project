@@ -14,17 +14,16 @@ const GoodsCatalogContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: ${(props) =>
-    props.isTileView ? "repeat(auto-fill, minmax(250px, 1fr))" : "none"};
+    props.$isTileView ? "repeat(auto-fill, minmax(250px, 1fr))" : "none"};
   grid-template-rows: ${(props) =>
-    props.isListView ? "repeat(auto-fill, minmax(150px, 1fr))" : "none"};
-  padding: ${(props) => (props.isTileView ? "10px" : "0")};
+    props.$isListView ? "repeat(auto-fill, minmax(150px, 1fr))" : "none"};
+  padding: ${(props) => (props.$isTileView ? "10px" : "0")};
 `;
 
-function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
+function GoodsCatalog({ category, viewMode, searchCatalogValue, sortValue }) {
   const cartItems = useSelector((state) => state.cart.items);
   const data = PRODUCTS;
   const [filteredProducts, setFilteredProducts] = useState([]);
-
   const dispatch = useDispatch();
 
   const handleIncrementButton = (_id) => {
@@ -83,22 +82,46 @@ function GoodsCatalog({ category, viewMode, searchCatalogValue }) {
     });
   };
 
+  const sortingData = (filteredData, sortValue) => {
+
+    function sortDate(a, b) {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+
+      return dateB - dateA;
+    }
+
+    switch (sortValue) {
+      case "Popular":
+        return filteredData;
+      case "Highest Price":
+        return filteredData.sort((a, b) => b.price - a.price);
+      case "Lowest Price":
+        return filteredData.sort((a, b) => a.price - b.price);
+      case "New":
+        return filteredData.sort(sortDate);
+      case "Name":
+        return filteredData.sort((a, b) => (a.name > b.name ? 1 : -1));
+    }
+  };
+
   useEffect(() => {
     const filteredData = sortingAndFilteringData(category, searchCatalogValue);
+    sortingData(filteredData, sortValue);
     setFilteredProducts(filteredData);
-  }, [category, searchCatalogValue, data]);
+  }, [category, searchCatalogValue, sortValue, data]);
 
   return (
     <GoodsCatalogContainer
-      isTileView={viewMode === "tile"}
-      isListView={viewMode === "list"}
+      $isTileView={viewMode === "tile"}
+      $isListView={viewMode === "list"}
     >
       {filteredProducts.map((product) => (
         <GoodsCatalogItem
           isAdded={checkPresenceInCart(product._id)}
           key={product._id}
           item={product}
-          isListView={viewMode === "list"}
+          $isListView={viewMode === "list"}
           onClickAddButton={() => addProductHandler(product)}
           onClickDecreaseButton={() => decreaseProductHandler(product)}
         />

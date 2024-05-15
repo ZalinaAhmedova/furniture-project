@@ -40,6 +40,7 @@ function ShopPage() {
   const [category, setCategory] = useState("All Categories");
   const [isViewMode, setIsViewMode] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [sortValue, setSortValue] = useState("Popular");
 
   const handleClickViewButton = () => {
     setIsViewMode(!isViewMode);
@@ -49,21 +50,23 @@ function ShopPage() {
     setSearchValue(event.target.value);
   };
 
+  const handleChangeSortValue = (event) => {
+    setSortValue(event.target.value);
+  };
+
   return (
     <ShopPageWrapper>
       <CategoriesWrapper>
-        <Categories
-          onClickCategory={(name) => setCategory(name)}
-        />
+        <Categories onClickCategory={(name) => setCategory(name)} />
         <Filters />
       </CategoriesWrapper>
       <GoodsWrapper>
         <ControllersWrapper>
-          <Sorting />
-          <Search
-            value={searchValue}
-            onChange={handleChangeSearchValue}
+          <Sorting
+            value={sortValue}
+            onChangeSort={handleChangeSortValue}
           />
+          <Search value={searchValue} onChange={handleChangeSearchValue} />
           <ViewCatalogButton
             isViewMode={isViewMode}
             onClick={() => handleClickViewButton()}
@@ -73,6 +76,7 @@ function ShopPage() {
           category={category}
           viewMode={isViewMode ? `list` : `tile`}
           searchCatalogValue={searchValue}
+          sortValue={sortValue}
         />
       </GoodsWrapper>
     </ShopPageWrapper>

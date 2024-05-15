@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CATEGORIES_DATA from "../data/categoriesData";
 
@@ -29,6 +29,10 @@ const CategoriesItemText = styled.p`
   &:hover {
     opacity: 0.8;
   }
+
+  &:active {
+    opacity: 0.5;
+  }
 `;
 
 const SubcategoriesItem = styled.li`
@@ -41,16 +45,23 @@ const SubcategoriesItem = styled.li`
   &:hover {
     opacity: 0.8;
   }
+
+  &:active {
+    opacity: 0.5;
+  }
 `;
 
 function Categories({ onClickCategory }) {
+
   return (
     <CategoriesWrapper>
       <CategoriesTitle>Categories</CategoriesTitle>
       {CATEGORIES_DATA.map((category, idx) => (
         <CategoriesItem key={idx}>
           <CategoriesItemText
-            onClick={() => onClickCategory(category.categoryName)}
+            onClick={() => {
+              onClickCategory(category.categoryName);
+            }}
           >
             {category.categoryName}
           </CategoriesItemText>

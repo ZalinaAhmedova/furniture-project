@@ -9,7 +9,7 @@ const InputContainer = styled.div`
 `;
 
 const StyledInput = styled.input`
-  border: ${(props) => (props.isError ? "1px solid red" : "none")};
+  border: ${(props) => (props.$isError ? "1px solid red" : "none")};
   border-radius: 6px;
   padding: 10px;
   margin-top: 3px;
@@ -35,7 +35,7 @@ function Input({ name, labelName, isError, errors }) {
   return (
     <InputContainer>
       <Label>{`${labelName}`}</Label>
-      <StyledInput {...methods.register(name)} isError={isError} type="text" />
+      <StyledInput {...methods.register(name)} $isError={isError} type="text" />
       {errors && <TextField>{errors.message}</TextField>}
     </InputContainer>
   );
