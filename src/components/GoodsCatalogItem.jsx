@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const GoodsCatalogItemWrapper = styled.div`
-  display: ${(props) => (props.isListView ? "flex" : "block")};
+  display: ${(props) => (props.$isListView ? "flex" : "block")};
   padding: 10px;
   border-bottom: ${(props) =>
-    props.isListView ? "1px var(--bg-gray) solid" : "none"};
+    props.$isListView ? "1px var(--bg-gray) solid" : "none"};
 `;
 
 const ProductNameContainer = styled.div`
@@ -30,13 +30,13 @@ const ProductName = styled.p`
 `;
 
 const ProductPriceValue = styled.span`
-  margin-top: ${(props) => (props.isListView ? "auto" : "0")};
+  margin-top: ${(props) => (props.$isListView ? "auto" : "0")};
   font-size: var(--fs-md);
   font-weight: bold;
 `;
 
 const ProductPrice = styled.span`
-  margin-top: ${(props) => (props.isListView ? "auto" : "0")};
+  margin-top: ${(props) => (props.$isListView ? "auto" : "0")};
   font-size: var(--fs-md);
   font-weight: bold;
 `;
@@ -49,8 +49,8 @@ const ProductButton = styled.button`
   font-size: var(--fs-sm);
   padding: 5px 10px;
   margin-right: 5px;
-  margin-left: ${(props) => (props.isListView ? "15px" : "0")};
-  margin-top: ${(props) => (props.isListView ? "125px" : "5px")};
+  margin-left: ${(props) => (props.$isListView ? "15px" : "0")};
+  margin-top: ${(props) => (props.$isListView ? "125px" : "5px")};
   height: 30px;
   min-width: 60px;
   cursor: pointer;
@@ -72,15 +72,15 @@ function GoodsCatalogItem({
   isAdded,
 }) {
   return (
-    <GoodsCatalogItemWrapper key={item._id} isListView={isListView}>
+    <GoodsCatalogItemWrapper key={item._id} $isListView={isListView}>
       <img width="200" height="150" src={item.imgSrc} />
       <ProductNameContainer>
         <ProductBrand>{item.brand}</ProductBrand>
         <ProductName>{item.name}</ProductName>
       </ProductNameContainer>
       <ProductPriceButtonContainer>
-        <ProductPriceValue isListView={isListView}>US$ </ProductPriceValue>
-        <ProductPrice isListView={isListView}>{item.price}</ProductPrice>
+        <ProductPriceValue $isListView={isListView}>US$ </ProductPriceValue>
+        <ProductPrice $isListView={isListView}>{item.price}</ProductPrice>
       </ProductPriceButtonContainer>
       {isAdded && (
         <ProductButton onClick={() => onClickDecreaseButton(item)}>
@@ -88,7 +88,7 @@ function GoodsCatalogItem({
         </ProductButton>
       )}
       <ProductButton
-        isListView={isListView}
+        $isListView={isListView}
         onClick={() => onClickAddButton(item)}
       >
         {isAdded ? `+1` : `Add to cart`}

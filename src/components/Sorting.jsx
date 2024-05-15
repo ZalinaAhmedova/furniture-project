@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const SortingContainer = styled.fieldset`
@@ -17,36 +17,17 @@ const SortingSelect = styled.select`
   cursor: pointer;
 `;
 
-function Sorting() {
-  const sortList = [
-    {
-      name: "Popular",
-      sortProperty: "popular",
-    },
-    {
-      name: "Highest Price",
-      sortProperty: "highest price",
-    },
-    {
-      name: "Lowest Price",
-      sortProperty: "lowest price",
-    },
-    {
-      name: "New",
-      sortProperty: "new",
-    },
-    {
-      name: "Name",
-      sortProperty: "name",
-    },
-  ];
+function Sorting({ value, onChangeSort }) {
+  const sortList = ["Popular", "Highest Price", "Lowest Price", "New", "Name"];
 
   return (
     <SortingContainer>
       <SortingTitle>SORT BY</SortingTitle>
-      <SortingSelect>
+      <SortingSelect value={value} onChange={onChangeSort}>
         {sortList.map((item, idx) => (
-          <option key={idx} onChange>{item.name}</option>
+          <option key={idx} value={item}>
+            {item}
+          </option>
         ))}
       </SortingSelect>
     </SortingContainer>
